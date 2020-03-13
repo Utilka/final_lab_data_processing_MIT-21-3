@@ -13,12 +13,13 @@ import java.util.Date;
  */
 public class Item {
 
+    private long id;
     private int volume;
     private String type;
     private String name;
     private int shelfLife;
     private Date manufactureDate;
-    
+
     /**
      * @return the volume
      */
@@ -87,5 +88,12 @@ public class Item {
      */
     public void setManufactureDate(Date manufactureDate) {
         this.manufactureDate = manufactureDate;
+    }
+
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
     }
 }

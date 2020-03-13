@@ -14,6 +14,7 @@ import jdk.jshell.spi.ExecutionControl.NotImplementedException;
  */
 public class RefrigeratorSection {
 
+    private long id;
     private int maxVolume;
     private String type;
     private String name;
@@ -24,7 +25,7 @@ public class RefrigeratorSection {
      * @param itemToAdd
      * @throws jdk.jshell.spi.ExecutionControl.NotImplementedException
      */
-    public void addItem(Item itemToAdd) throws  Exception {
+    public void addItem(Item itemToAdd) throws Exception {
         if (this.getVolume() + itemToAdd.getVolume() <= maxVolume) {
             contents.add(itemToAdd);
         } else {
@@ -46,7 +47,7 @@ public class RefrigeratorSection {
      */
     public int getVolume() throws NotImplementedException {
         int volume = 0;
-        for (Item contentItem: contents) {
+        for (Item contentItem : contents) {
             volume += contentItem.getVolume();
         }
         return volume;
@@ -122,4 +123,10 @@ public class RefrigeratorSection {
         this.name = name;
     }
 
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
+    }
 }

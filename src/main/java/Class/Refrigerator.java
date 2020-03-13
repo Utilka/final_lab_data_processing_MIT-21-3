@@ -13,13 +13,14 @@ import java.util.List;
  * @author andrii
  */
 public class Refrigerator {
-    
+
+    private long id;
     private List<RefrigeratorSection> SectionList = new ArrayList<RefrigeratorSection>();
-    private String Skin="default";
+    private String Skin = "default";
     private String name;
     private boolean door1;
     private boolean door2;
-    private int level=1;
+    private int level = 1;
 
     /**
      * @return the SectionList
@@ -105,7 +106,11 @@ public class Refrigerator {
         this.level = level;
     }
 
-  
-    
-    
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
+    }
+
 }
