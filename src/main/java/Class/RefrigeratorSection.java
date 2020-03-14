@@ -5,6 +5,7 @@
  */
 package Class;
 
+import java.util.ArrayList;
 import java.util.List;
 import jdk.jshell.spi.ExecutionControl.NotImplementedException;
 
@@ -15,11 +16,29 @@ import jdk.jshell.spi.ExecutionControl.NotImplementedException;
 public class RefrigeratorSection {
 
     private long id;
-    private int maxVolume;
-    private String type;
-    private String name;
-    private String contentsType;
-    private List<Item> contents;
+    private int maxVolume=100;
+    private String type="shelf"; // тип секции: дверца, или обычная полка
+    private String name="sample_section_name";
+    private String contentsType="general";
+    private List<Item> contents = new ArrayList<Item>();
+
+    public RefrigeratorSection() {
+    }
+
+    public RefrigeratorSection(int maxVolume, String type, String name, String contentsType) {
+        this.maxVolume = maxVolume;
+        this.type = type;
+        this.name = name;
+        this.contentsType = contentsType;
+    }
+
+    public RefrigeratorSection(int maxVolume, String type, String name, String contentsType, List<Item> contents) {
+        this.maxVolume = maxVolume;
+        this.type = type;
+        this.name = name;
+        this.contentsType = contentsType;
+        this.contents = contents;
+    }
 
     /**
      * @param itemToAdd

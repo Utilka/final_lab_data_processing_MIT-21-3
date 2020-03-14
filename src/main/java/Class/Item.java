@@ -5,6 +5,7 @@
  */
 package Class;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -13,12 +14,39 @@ import java.util.Date;
  */
 public class Item {
 
+    final long milisecondsInDay = 86400000;
     private long id;
-    private int volume;
-    private String type;
-    private String name;
-    private int shelfLife;
-    private Date manufactureDate;
+    private int volume = 10;
+    private String type = "general";
+    private String name = "sample_item_name";
+    private int shelfLife = 10; //in days
+    private Date manufactureDate = new Date(1584169190000L); // GMT: Saturday, March 14, 2020 6:59:50 AM
+
+    public Item() {
+    }
+
+    public Item(int volume, String type, String name, int shelfLife, Date manufactureDate) {
+        this.volume = volume;
+        this.type = type;
+        this.name = name;
+        this.shelfLife = shelfLife;
+        this.manufactureDate = manufactureDate;
+    }
+
+    public String checkShelfLife() {
+        long shelfLifeInMiliseconds = shelfLife * milisecondsInDay;
+        Date currentDate = new Date();
+        if (currentDate.getTime() > manufactureDate.getTime() + shelfLifeInMiliseconds) {
+            return "Expired";
+        }
+        if (currentDate.getTime() > manufactureDate.getTime() + shelfLifeInMiliseconds - 7 * 86400000) { //7 days before expiration date
+            return "Close to Expiring";
+        }
+        if (currentDate.getTime() < manufactureDate.getTime() + shelfLifeInMiliseconds) {
+            return "Fresh";
+        }
+        return "";
+    }
 
     /**
      * @return the volume

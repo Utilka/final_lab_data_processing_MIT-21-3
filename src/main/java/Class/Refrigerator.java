@@ -15,12 +15,29 @@ import java.util.List;
 public class Refrigerator {
 
     private long id;
-    private List<RefrigeratorSection> SectionList = new ArrayList<RefrigeratorSection>();
-    private String Skin = "default";
-    private String name;
-    private boolean door1;
-    private boolean door2;
+    private String name="fridge";
+    private boolean door1=false;
+    private boolean door2=false;
     private int level = 1;
+    private String Skin = "default";
+    private List<RefrigeratorSection> SectionList = new ArrayList<RefrigeratorSection>();
+    
+    public Refrigerator() {
+    }
+    
+    public Refrigerator(String name,boolean door1,boolean door2){
+        this.name = name;
+        this.door1 = door1;
+        this.door2 = door2;
+    }
+    public Refrigerator(String name,boolean door1,boolean door2,int level,String Skin,List<RefrigeratorSection> SectionList){
+        this.name = name;
+        this.door1 = door1;
+        this.door2 = door2;
+        this.level = level;
+        this.Skin = Skin;
+        this.SectionList = SectionList;
+    }
 
     /**
      * @return the SectionList
