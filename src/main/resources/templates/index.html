@@ -12,8 +12,6 @@ and open the template in the editor.
     </head>
     <body xmlns:th="http://www.thymeleaf.org">
         <a href="/persons">Persons</a>
-        <a href="/houses">Houses</a>
-        <a href="/dogs">Dogs</a>
         <div th:switch="${items}">
             <h2 th:case="null">No items yet!</h2>
             <div th:case="*">

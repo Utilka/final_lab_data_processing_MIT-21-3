@@ -49,6 +49,8 @@ public class appUIController {
 //        model.addAttribute("dogs", dogRepository.findAll());
         List<Item> contents = new ArrayList<Item>();
         contents.add(new Item());
+        contents.add(new Item());
+        contents.add(new Item());
 
 //        List<Item> contents = null;
         model.addAttribute("items", contents);
