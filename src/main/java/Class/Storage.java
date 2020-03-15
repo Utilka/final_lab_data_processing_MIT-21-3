@@ -7,18 +7,37 @@ package Class;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import jdk.jshell.spi.ExecutionControl;
 
 /**
  *
  * @author andrii
  */
+@Entity
 public class Storage {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private long id;
+    @Column(name = "max_volume")
     private int maxVolume;
+    @Column(name = "name")
     private String name;
+    @OneToMany(
+            mappedBy = "inFrigeSection",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
     private List<Item> contents = new ArrayList<Item>();
 
-   
     /**
      * @param itemToAdd
      * @throws jdk.jshell.spi.ExecutionControl.NotImplementedException
@@ -42,14 +61,14 @@ public class Storage {
     /**
      * @return the volume
      */
-    public int getVolume(){
+    public int getVolume() {
         int volume = 0;
         for (Item contentItem : contents) {
             volume += contentItem.getVolume();
         }
         return volume;
     }
-    
+
     /**
      * @return the maxVolume
      */
@@ -91,5 +110,12 @@ public class Storage {
     public void setContents(List<Item> contents) {
         this.contents = contents;
     }
-    
+
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
+    }
+
 }

@@ -7,30 +7,52 @@ package Class;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author andrii
  */
+@Entity
 public class Refrigerator {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private long id;
-    private String name="fridge";
-    private boolean door1=false;
-    private boolean door2=false;
+    @Column(name = "name")
+    private String name = "fridge";
+    @Column(name = "door1")
+    private boolean door1 = false;
+    @Column(name = "door2")
+    private boolean door2 = false;
+    @Column(name = "level")
     private int level = 1;
+    @Column(name = "skin")
     private String Skin = "default";
+    @OneToMany(
+            mappedBy = "frige",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
     private List<RefrigeratorSection> SectionList = new ArrayList<RefrigeratorSection>();
-    
+
     public Refrigerator() {
     }
-    
-    public Refrigerator(String name,boolean door1,boolean door2){
+
+    public Refrigerator(String name, boolean door1, boolean door2) {
         this.name = name;
         this.door1 = door1;
         this.door2 = door2;
     }
-    public Refrigerator(String name,boolean door1,boolean door2,int level,String Skin,List<RefrigeratorSection> SectionList){
+
+    public Refrigerator(String name, boolean door1, boolean door2, int level, String Skin, List<RefrigeratorSection> SectionList) {
         this.name = name;
         this.door1 = door1;
         this.door2 = door2;

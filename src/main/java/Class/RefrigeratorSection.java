@@ -7,19 +7,46 @@ package Class;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import jdk.jshell.spi.ExecutionControl.NotImplementedException;
 
 /**
  *
  * @author andrii
  */
+@Entity
 public class RefrigeratorSection {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private long id;
-    private int maxVolume=100;
-    private String type="shelf"; // тип секции: дверца, или обычная полка
-    private String name="sample_section_name";
-    private String contentsType="general";
+    @Column(name = "max_volume")
+    private int maxVolume = 100;
+    @Column(name = "type")
+    private String type = "shelf"; // тип секции: дверца, или обычная полка
+    @Column(name = "name")
+    private String name = "sample_section_name";
+    @Column(name = "contents_type")
+    private String contentsType = "general";
+
+    @ManyToOne
+    @JoinColumn(name = "frige_id")
+    private Refrigerator frige;
+
+    @OneToMany(
+            mappedBy = "inFrigeSection",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
     private List<Item> contents = new ArrayList<Item>();
 
     public RefrigeratorSection() {
@@ -148,4 +175,19 @@ public class RefrigeratorSection {
     public long getId() {
         return id;
     }
+
+    /**
+     * @return the frige
+     */
+    public Refrigerator getFrige() {
+        return frige;
+    }
+
+    /**
+     * @param frige the frige to set
+     */
+    public void setFrige(Refrigerator frige) {
+        this.frige = frige;
+    }
+
 }

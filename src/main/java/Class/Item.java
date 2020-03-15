@@ -7,20 +7,43 @@ package Class;
 
 import java.util.Calendar;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author andrii
  */
+@Entity
 public class Item {
 
     final long milisecondsInDay = 86400000;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private long id;
+    @Column(name = "volume")
     private int volume = 10;
+    @Column(name = "type")
     private String type = "general";
+    @Column(name = "name")
     private String name = "sample_item_name";
+    @Column(name = "shelf_life")
     private int shelfLife = 10; //in days
+    @Column(name = "manufacture_date")
     private Date manufactureDate = new Date(1584169190000L); // GMT: Saturday, March 14, 2020 6:59:50 AM
+
+    @ManyToOne
+    @JoinColumn(name = "in_frige_section")
+    private RefrigeratorSection inFrigeSection; // GMT: Saturday, March 14, 2020 6:59:50 AM
+    @ManyToOne
+    @JoinColumn(name = "in_storage")
+    private RefrigeratorSection inStorage; // GMT: Saturday, March 14, 2020 6:59:50 AM
 
     public Item() {
     }
@@ -124,4 +147,33 @@ public class Item {
     public long getId() {
         return id;
     }
+
+    /**
+     * @return the inFrigeSection
+     */
+    public RefrigeratorSection getInFrigeSection() {
+        return inFrigeSection;
+    }
+
+    /**
+     * @param inFrigeSection the inFrigeSection to set
+     */
+    public void setInFrigeSection(RefrigeratorSection inFrigeSection) {
+        this.inFrigeSection = inFrigeSection;
+    }
+
+    /**
+     * @return the inStorage
+     */
+    public RefrigeratorSection getInStorage() {
+        return inStorage;
+    }
+
+    /**
+     * @param inStorage the inStorage to set
+     */
+    public void setInStorage(RefrigeratorSection inStorage) {
+        this.inStorage = inStorage;
+    }
+
 }
