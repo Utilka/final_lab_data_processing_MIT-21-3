@@ -6,6 +6,12 @@
 package finalLab.UI;
 
 import finalLab.Class.Item;
+import finalLab.repository.ItemRepository;
+import finalLab.repository.RefrigeratorRepository;
+import finalLab.repository.RefrigeratorSectionRepository;
+import finalLab.repository.ShopLotRepository;
+import finalLab.repository.ShopRepository;
+import finalLab.repository.StorageRepository;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
@@ -25,34 +31,41 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class appUIController {
 
-//    private final HouseRepository houseRepository;
-//    private final PersonRepository personRepository;
-//    private final DogRepository dogRepository;
-//    @Autowired
-//    public Controller(
-//            HouseRepository houseRepository,
-//            PersonRepository personRepository,
-//            DogRepository dogRepository) {
-//        this.houseRepository = houseRepository;
-//        this.dogRepository = dogRepository;
-//        this.personRepository = personRepository;
-//    }
+    private final ItemRepository itemRepository;
+
+    private final RefrigeratorRepository refrigeratorRepository;
+
+    private final RefrigeratorSectionRepository refrigeratorSectionRepository;
+
+    private final ShopLotRepository shopLotRepository;
+
+    private final ShopRepository shopRepository;
+
+    private final StorageRepository storageRepository;
+
     @Autowired
-    public appUIController() {
+    public appUIController(
+            ItemRepository itemRepository,
+            RefrigeratorRepository refrigeratorRepository,
+            RefrigeratorSectionRepository refrigeratorSectionRepository,
+            ShopLotRepository shopLotRepository,
+            ShopRepository shopRepository,
+            StorageRepository storageRepository) {
+        this.itemRepository=itemRepository;
+        this.refrigeratorRepository=refrigeratorRepository;
+        this.refrigeratorSectionRepository=refrigeratorSectionRepository;
+        this.shopLotRepository=shopLotRepository;
+        this.shopRepository=shopRepository;
+        this.storageRepository=storageRepository;
+        
+        
+        
 
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showStartingPage(Model model) {
-//        model.addAttribute("houses", houseRepository.findAll());
-//        model.addAttribute("persons", personRepository.findAll());
-//        model.addAttribute("dogs", dogRepository.findAll());
-        List<Item> contents = new ArrayList<Item>();
-        contents.add(new Item());
-        contents.add(new Item());
-        contents.add(new Item());
-
-//        List<Item> contents = null;
+        Iterable<Item> contents = itemRepository.findAll();
         model.addAttribute("items", contents);
         return "index";
     }
