@@ -1,6 +1,8 @@
 *.[oa]
 *~
-application.properties
+*.properties
+*.properties~
+
 
 HELP.md
 target/
