@@ -1,0 +1,68 @@
+.header_container{
+    height: 10vh; 
+}
+
+.default_refregerator_container{
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    width: 70%;
+    margin-left: 15%;
+    height: 80vh;
+    background: url('/rf.png');
+    background-size: auto 100%; 
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.default_refregerator_container .container_1{
+    position: absolute;
+    top: 5px;
+    width: 500px;
+    height: 410px;
+
+    background-color: rgba(255, 192, 203, 0.5);
+
+}
+.default_refregerator_container .container_2{
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    width: 475px;
+    height: 410px;
+
+    background-color: rgba(255, 192, 203, 0.5);
+
+}
+.default_refregerator_container .container_3{
+    position: absolute;
+    top: 420px;
+    width: 500px;
+    height: 350px;
+
+    background-color: rgba(255, 192, 203, 0.5);
+
+}
+.default_refregerator_container .container_4{
+    position: absolute;
+    top: 420px;
+    right: 0px;
+    width: 475px;
+    height: 350px;
+
+    background-color: rgba(255, 192, 203, 0.5);
+}
+.default_refregerator_container .section_header{
+    background-color: white;
+    
+    border-radius: 0;
+    margin: 0;
+    width: 100%;
+    height: 27px;
+    max-height: 27px;
+    padding: 0;
+}
+.default_refregerator_container .section_content{
+    background-color: white;
+    
+    height: 302px;
+}

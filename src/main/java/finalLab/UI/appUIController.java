@@ -6,6 +6,8 @@
 package finalLab.UI;
 
 import finalLab.Class.Item;
+import finalLab.Class.Refrigerator;
+import finalLab.Class.RefrigeratorSection;
 import finalLab.repository.ItemRepository;
 import finalLab.repository.RefrigeratorRepository;
 import finalLab.repository.RefrigeratorSectionRepository;
@@ -65,8 +67,13 @@ public class appUIController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showStartingPage(Model model) {
-        Iterable<Item> contents = itemRepository.findAll();
-        model.addAttribute("items", contents);
+//        Iterable<Item> contents = itemRepository.findAll();
+//        model.addAttribute("items", contents);
+        Iterable<Refrigerator> refrigerators = refrigeratorRepository.findAll();
+        Refrigerator refrigerator = refrigerators.iterator().next();
+        Iterable<RefrigeratorSection> sections = refrigeratorSectionRepository.findAll();
+        model.addAttribute("sections", sections);
+        model.addAttribute("refrigerator", refrigerator);
         return "index";
     }
 
