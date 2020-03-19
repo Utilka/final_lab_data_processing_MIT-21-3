@@ -7,7 +7,9 @@ package finalLab.Class;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,7 +46,7 @@ public class Refrigerator {
             mappedBy = "frige",
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
-    private List<RefrigeratorSection> sectionList = new ArrayList<RefrigeratorSection>();
+    private Set<RefrigeratorSection> sectionList = new HashSet<RefrigeratorSection>();
 
     public Refrigerator() {
     }
@@ -59,7 +61,7 @@ public class Refrigerator {
         this.door2 = door2;
     }
 
-    public Refrigerator(String name, boolean door1, boolean door2, int level, String Skin, List<RefrigeratorSection> SectionList) {
+    public Refrigerator(String name, boolean door1, boolean door2, int level, String Skin, Set<RefrigeratorSection> SectionList) {
         this.name = name;
         this.door1 = door1;
         this.door2 = door2;
@@ -71,14 +73,14 @@ public class Refrigerator {
     /**
      * @return the SectionList
      */
-    public List<RefrigeratorSection> getSectionList() {
+    public Set<RefrigeratorSection> getSectionList() {
         return sectionList;
     }
 
     /**
      * @param SectionList the SectionList to set
      */
-    public void setSectionList(List<RefrigeratorSection> SectionList) {
+    public void setSectionList(Set<RefrigeratorSection> SectionList) {
         this.sectionList = SectionList;
     }
 

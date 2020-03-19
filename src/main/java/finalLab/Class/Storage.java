@@ -7,7 +7,9 @@ package finalLab.Class;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +41,7 @@ public class Storage {
             mappedBy = "inStorage",
 //            cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
-    private List<Item> contents = new ArrayList<Item>();
+    private Set<Item> contents = new HashSet<Item>();
 
     public Storage() {
     }
@@ -48,7 +50,7 @@ public class Storage {
         this.name = name;
     }
 
-    public Storage(int maxVolume, String type, String name, String contentsType, List<Item> contents) {
+    public Storage(int maxVolume, String type, String name, String contentsType, Set<Item> contents) {
         this.maxVolume = maxVolume;
         this.name = name;
         this.contents = contents;
@@ -116,14 +118,14 @@ public class Storage {
     /**
      * @return the contents
      */
-    public List<Item> getContents() {
+    public Set<Item> getContents() {
         return contents;
     }
 
     /**
      * @param contents the contents to set
      */
-    public void setContents(List<Item> contents) {
+    public void setContents(Set<Item> contents) {
         this.contents = contents;
     }
 

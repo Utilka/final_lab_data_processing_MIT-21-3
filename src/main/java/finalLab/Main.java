@@ -63,11 +63,8 @@ public class Main implements CommandLineRunner {
 
         Refrigerator refrigerator = new Refrigerator("name 21");
 
-        List<RefrigeratorSection> sectionList = new ArrayList<RefrigeratorSection>();
-        sectionList.add(refrigeratorSection1);
-        sectionList.add(refrigeratorSection2);
-
-        refrigerator.setSectionList(sectionList);
+        refrigeratorSection1.setFrige(refrigerator);
+        refrigeratorSection2.setFrige(refrigerator);
 
         Item shopItem1 = new Item("shop item name 31");
         Item shopItem2 = new Item("shop item name 32");
@@ -90,7 +87,7 @@ public class Main implements CommandLineRunner {
         Storage storage = new Storage();
 
         System.out.println("finished data init");
-        
+
         storageRepository.save(storage);
         refrigeratorRepository.save(refrigerator);
         refrigeratorSectionRepository.save(refrigeratorSection1);
@@ -105,15 +102,16 @@ public class Main implements CommandLineRunner {
         shopLotRepository.save(shopLot1);
         shopLotRepository.save(shopLot2);
         shopLotRepository.save(shopLot3);
-        
+
         System.out.println("finished db init");
-        
-        item1 = itemRepository.findById(4L).get();
-        item2 = itemRepository.findById(5L).get();
-        item3 = itemRepository.findById(7L).get();        
-        refrigeratorSection1 = refrigeratorSectionRepository.findById(3L).get();
-        refrigeratorSection2 = refrigeratorSectionRepository.findById(6L).get();
+
+        storage = storageRepository.findById(1L).get();
         refrigerator = refrigeratorRepository.findById(2L).get();
+        refrigeratorSection1 = refrigeratorSectionRepository.findById(3L).get();
+        refrigeratorSection2 = refrigeratorSectionRepository.findById(4L).get();
+        item1 = itemRepository.findById(5L).get();
+        item2 = itemRepository.findById(6L).get();
+        item3 = itemRepository.findById(7L).get();        
         shopItem1 = itemRepository.findById(8L).get();
         shopItem2 = itemRepository.findById(9L).get();
         shopItem3 = itemRepository.findById(10L).get();
@@ -121,9 +119,7 @@ public class Main implements CommandLineRunner {
         shopLot2 = shopLotRepository.findById(13L).get();
         shopLot3 = shopLotRepository.findById(14L).get();
         shop = shopRepository.findById(11L).get();
-        storage = storageRepository.findById(1L).get();
-        
-        
+
         System.out.println("get data");
 
     }

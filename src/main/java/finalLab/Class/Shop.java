@@ -7,7 +7,9 @@ package finalLab.Class;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,7 +39,7 @@ public class Shop {
             mappedBy = "shop",
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
-    private List<ShopLot> contents = new ArrayList<ShopLot>();
+    private Set<ShopLot> contents = new HashSet<ShopLot>();
 
     public Shop() {
     }
@@ -46,7 +48,7 @@ public class Shop {
         this.name = name;
     }
 
-    public Shop(String name, List<ShopLot> contents) {
+    public Shop(String name, Set<ShopLot> contents) {
         this.name = name;
         this.contents = contents;
     }
@@ -61,14 +63,14 @@ public class Shop {
     /**
      * @return the contents
      */
-    public List<ShopLot> getContents() {
+    public Set<ShopLot> getContents() {
         return contents;
     }
 
     /**
      * @param contents the contents to set
      */
-    public void setContents(List<ShopLot> contents) {
+    public void setContents(Set<ShopLot> contents) {
         this.contents = contents;
     }
 

@@ -7,7 +7,9 @@ package finalLab.Class;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,7 +53,7 @@ public class RefrigeratorSection {
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
-    private List<Item> contents = new ArrayList<Item>();
+    private Set<Item> contents = new HashSet<Item>();
 
     public RefrigeratorSection() {
     }
@@ -67,7 +69,7 @@ public class RefrigeratorSection {
         this.contentsType = contentsType;
     }
 
-    public RefrigeratorSection(int maxVolume, String type, String name, String contentsType, List<Item> contents) {
+    public RefrigeratorSection(int maxVolume, String type, String name, String contentsType, Set<Item> contents) {
         this.maxVolume = maxVolume;
         this.type = type;
         this.name = name;
@@ -138,14 +140,14 @@ public class RefrigeratorSection {
     /**
      * @return the contents
      */
-    public List<Item> getContents() {
+    public Set<Item> getContents() {
         return contents;
     }
 
     /**
      * @param contents the contents to set
      */
-    public void setContents(List<Item> contents) {
+    public void setContents(Set<Item> contents) {
         this.contents = contents;
     }
 
