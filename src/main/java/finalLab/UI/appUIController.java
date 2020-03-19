@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI;
+package finalLab.UI;
 
-import Class.Item;
+import finalLab.Class.Item;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;

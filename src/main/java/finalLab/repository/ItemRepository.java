@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package repository;
+package finalLab.repository;
 
-import Class.Refrigerator;
+import finalLab.Class.Item;
 import org.springframework.data.repository.CrudRepository;
+//import org.springframework.data.jpa.repository.JpaRepository;
+
 /**
  *
  * @author andrii
  */
-public interface RefrigeratorRepository extends CrudRepository<Refrigerator, Long> {
+public interface ItemRepository extends CrudRepository<Item, Long> {
 
 }

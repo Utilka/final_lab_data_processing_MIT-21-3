@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Class;
+package finalLab.Class;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,11 +17,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import jdk.jshell.spi.ExecutionControl;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 /**
  *
  * @author andrii
  */
+@EnableAutoConfiguration
 @Entity
 public class Storage {
 
@@ -33,10 +36,23 @@ public class Storage {
     @Column(name = "name")
     private String name;
     @OneToMany(
-            mappedBy = "inFrigeSection",
-            cascade = CascadeType.ALL,
+            mappedBy = "inStorage",
+//            cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
     private List<Item> contents = new ArrayList<Item>();
+
+    public Storage() {
+    }
+
+    public Storage(String name) {
+        this.name = name;
+    }
+
+    public Storage(int maxVolume, String type, String name, String contentsType, List<Item> contents) {
+        this.maxVolume = maxVolume;
+        this.name = name;
+        this.contents = contents;
+    }
 
     /**
      * @param itemToAdd
@@ -46,7 +62,7 @@ public class Storage {
         if (this.getVolume() + itemToAdd.getVolume() <= maxVolume) {
             contents.add(itemToAdd);
         } else {
-            throw new Exception("TODO");
+            throw new Exception("TODO maxVolume in storage");
         }
 
     }

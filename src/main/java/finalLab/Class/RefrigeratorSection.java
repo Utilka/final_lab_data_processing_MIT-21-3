@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Class;
+package finalLab.Class;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,11 +19,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import jdk.jshell.spi.ExecutionControl.NotImplementedException;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 /**
  *
  * @author andrii
  */
+@EnableAutoConfiguration
 @Entity
 public class RefrigeratorSection {
 
@@ -46,10 +49,15 @@ public class RefrigeratorSection {
     @OneToMany(
             mappedBy = "inFrigeSection",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
+            fetch = FetchType.EAGER
+    )
     private List<Item> contents = new ArrayList<Item>();
 
     public RefrigeratorSection() {
+    }
+
+    public RefrigeratorSection(String name) {
+        this.name = name;
     }
 
     public RefrigeratorSection(int maxVolume, String type, String name, String contentsType) {
@@ -75,7 +83,7 @@ public class RefrigeratorSection {
         if (this.getVolume() + itemToAdd.getVolume() <= maxVolume) {
             contents.add(itemToAdd);
         } else {
-            throw new Exception("TODO");
+            throw new Exception("TODO maxVolume");
         }
 
     }

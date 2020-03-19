@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Class;
+package finalLab.Class;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -14,11 +14,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 /**
  *
  * @author andrii
  */
+@EnableAutoConfiguration
 @Entity
 public class Item {
 
@@ -39,13 +41,21 @@ public class Item {
     private Date manufactureDate = new Date(1584169190000L); // GMT: Saturday, March 14, 2020 6:59:50 AM
 
     @ManyToOne
-    @JoinColumn(name = "in_frige_section")
+    @JoinColumn(name = "frige_section_id"
+//            ,nullable=false
+    )
     private RefrigeratorSection inFrigeSection; // GMT: Saturday, March 14, 2020 6:59:50 AM
     @ManyToOne
-    @JoinColumn(name = "in_storage")
+    @JoinColumn(name = "storage_id"
+//            ,nullable=false
+    )
     private RefrigeratorSection inStorage; // GMT: Saturday, March 14, 2020 6:59:50 AM
 
     public Item() {
+    }
+
+    public Item(String name) {
+        this.name = name;
     }
 
     public Item(int volume, String type, String name, int shelfLife, Date manufactureDate) {

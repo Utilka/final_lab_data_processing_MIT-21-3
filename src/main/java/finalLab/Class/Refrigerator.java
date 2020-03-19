@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Class;
+package finalLab.Class;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,11 +16,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 /**
  *
  * @author andrii
  */
+@EnableAutoConfiguration
 @Entity
 public class Refrigerator {
 
@@ -41,9 +44,13 @@ public class Refrigerator {
             mappedBy = "frige",
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
-    private List<RefrigeratorSection> SectionList = new ArrayList<RefrigeratorSection>();
+    private List<RefrigeratorSection> sectionList = new ArrayList<RefrigeratorSection>();
 
     public Refrigerator() {
+    }
+
+    public Refrigerator(String name) {
+        this.name = name;
     }
 
     public Refrigerator(String name, boolean door1, boolean door2) {
@@ -58,21 +65,21 @@ public class Refrigerator {
         this.door2 = door2;
         this.level = level;
         this.Skin = Skin;
-        this.SectionList = SectionList;
+        this.sectionList = SectionList;
     }
 
     /**
      * @return the SectionList
      */
     public List<RefrigeratorSection> getSectionList() {
-        return SectionList;
+        return sectionList;
     }
 
     /**
      * @param SectionList the SectionList to set
      */
     public void setSectionList(List<RefrigeratorSection> SectionList) {
-        this.SectionList = SectionList;
+        this.sectionList = SectionList;
     }
 
     /**
