@@ -13,4 +13,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface RefrigeratorRepository extends CrudRepository<Refrigerator, Long> {
 
+    
+
 }

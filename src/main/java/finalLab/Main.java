@@ -104,7 +104,7 @@ public class Main implements CommandLineRunner {
         shopLotRepository.save(shopLot3);
 
         System.out.println("finished db init");
-
+/*
         storage = storageRepository.findById(1L).get();
         refrigerator = refrigeratorRepository.findById(2L).get();
         refrigeratorSection1 = refrigeratorSectionRepository.findById(3L).get();
@@ -119,8 +119,7 @@ public class Main implements CommandLineRunner {
         shopLot2 = shopLotRepository.findById(13L).get();
         shopLot3 = shopLotRepository.findById(14L).get();
         shop = shopRepository.findById(11L).get();
-
-        System.out.println("get data");
+*/      
 
     }
 }
