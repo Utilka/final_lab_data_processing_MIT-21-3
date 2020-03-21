@@ -5,7 +5,6 @@
  */
 package finalLab.Class;
 
-import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,14 +40,10 @@ public class Item {
     private Date manufactureDate = new Date(1584169190000L); // GMT: Saturday, March 14, 2020 6:59:50 AM
 
     @ManyToOne
-    @JoinColumn(name = "frige_section_id"
-//            ,nullable=false
-    )
+    @JoinColumn(name = "frige_section_id")
     private RefrigeratorSection inFrigeSection; // GMT: Saturday, March 14, 2020 6:59:50 AM
     @ManyToOne
-    @JoinColumn(name = "storage_id"
-//            ,nullable=false
-    )
+    @JoinColumn(name = "storage_id")
     private RefrigeratorSection inStorage; // GMT: Saturday, March 14, 2020 6:59:50 AM
 
     public Item() {
