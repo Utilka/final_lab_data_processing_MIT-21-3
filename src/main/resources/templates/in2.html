@@ -1,0 +1,8 @@
+
+<div th:switch="${Main}">
+    <h2 th:case="null">No items yet!</h2>
+    <div th:case="*">
+        <!-- <p th:text="${Main-s-1.name}"></p> -->
+        <p>OK</p>
+    </div>
+</div>

@@ -72,79 +72,335 @@ and open the template in the editor.
                 <div class="default_refregerator_content">
                     <div class="container_1" id="accordion">
                         <div class="container_1__section" >
-                            <div id="headingOne">
-                                <a class="btn btn-link section_header" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    section_1
+                            <div id="headingOne" class="heading">
+                                <a class="btn btn-link section_header section_header-first" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <div class="header_text">
+                                        Main - Shelf 1
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:switch="${Main_s_1.getContents().size()==Main_s_1.getMaxVolume()}">
+                                            <div th:case="true">
+                                                <div  style="color: red;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                            <div th:case="false">
+                                                <div  style="color: green;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </a>
                             </div>
                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                 <div class="section_content">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt reprehenderit expedita vitae vel aliquam pariatur molestiae est molestias ratione modi, in dolorem omnis doloremque aperiam suscipit voluptate iste repellat fuga.
+                                    Content
                                 </div>
                             </div>
                         </div>
-
                         <div class="container_1__section" >
-                            <div id="headingTwo">
+                            <div id="headingTwo" class="heading">
                                 <a class="btn btn-link section_header" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                    section_1
+                                    <div class="header_text">
+                                        Main - Shelf 2
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:switch="${Main_s_1.getContents().size()==Main_s_1.getMaxVolume()}">
+                                            <div th:case="true">
+                                                <div  style="color: red;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                            <div th:case="false">
+                                                <div  style="color: green;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </a>
                             </div>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                 <div class="section_content">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt reprehenderit expedita vitae vel aliquam pariatur molestiae est molestias ratione modi, in dolorem omnis doloremque aperiam suscipit voluptate iste repellat fuga.
+                                    Content
                                 </div>
                             </div>
                         </div>
                         <div class="container_1__section" >
-                            <div id="headingThree">
+                            <div id="headingThree" class="heading">
                                 <a class="btn btn-link section_header" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                    section_1
+                                    <div class="header_text">
+                                        Main - Shelf 3
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:switch="${Main_s_1.getContents().size()==Main_s_1.getMaxVolume()}">
+                                            <div th:case="true">
+                                                <div  style="color: red;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                            <div th:case="false">
+                                                <div  style="color: green;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </a>
                             </div>
                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                                 <div class="section_content">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt reprehenderit expedita vitae vel aliquam pariatur molestiae est molestias ratione modi, in dolorem omnis doloremque aperiam suscipit voluptate iste repellat fuga.
+                                    Content
                                 </div>
                             </div>
                         </div>
                         <div class="container_1__section" >
-                            <div id="headingFourth">
+                            <div id="headingFourth" class="heading">
                                 <a class="btn btn-link section_header" data-toggle="collapse" data-target="#collapseFourth" aria-expanded="true" aria-controls="collapseFourth">
-                                    section_1
+                                    <div class="header_text">
+                                        Main - Shelf 4
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:switch="${Main_s_1.getContents().size()==Main_s_1.getMaxVolume()}">
+                                            <div th:case="true">
+                                                <div  style="color: red;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                            <div th:case="false">
+                                                <div  style="color: green;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </a>
                             </div>
                             <div id="collapseFourth" class="collapse" aria-labelledby="headingFourth" data-parent="#accordion">
-                                <div class="section_content">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt reprehenderit expedita vitae vel aliquam pariatur molestiae est molestias ratione modi, in dolorem omnis doloremque aperiam suscipit voluptate iste repellat fuga.
+                                <div class="section_content ">
+                                    Content
                                 </div>
                             </div>
                         </div>
                     </div> 
                     <div class="container_2">
-                        <div class="container_2__section">
-                            section_2
-
+                        <div class="container_2__section" >
+                            <div class="heading">
+                                <a class="btn btn-link section_header section_header-first">
+                                    <div class="header_text">
+                                        Main - Door
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:switch="${Main_s_1.getContents().size()==Main_s_1.getMaxVolume()}">
+                                            <div th:case="true">
+                                                <div  style="color: red;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                            <div th:case="false">
+                                                <div  style="color: green;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div >
+                                <div class="section_content ">
+                                    Content
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="container_3">
-                        <div class="container_3__section">
-                            section_3
-
+                    <div class="container_3" id="accordion-s3">
+                        <div class="container_3__section" >
+                            <div id="headingOne-s3" class="heading">
+                                <a class="btn btn-link section_header section_header-first" data-toggle="collapse" data-target="#collapseOne-s3" aria-expanded="true" aria-controls="collapseOne-s3">
+                                    <div class="header_text">
+                                        Freezer - Shelf 1
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:switch="${Main_s_1.getContents().size()==Main_s_1.getMaxVolume()}">
+                                            <div th:case="true">
+                                                <div  style="color: red;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                            <div th:case="false">
+                                                <div  style="color: green;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="collapseOne-s3" class="collapse show" aria-labelledby="headingOne-s3" data-parent="#accordion-s3">
+                                <div class="section_content">
+                                    Content
+                                </div>
+                            </div>
                         </div>
-                        <div class="container_3__section">
-                            section_3
 
+                        <div class="container_3__section" >
+                            <div id="headingTwo-s3" class="heading">
+                                <a class="btn btn-link section_header" data-toggle="collapse" data-target="#collapseTwo-s3" aria-expanded="true" aria-controls="collapseTwo-s3">
+                                    <div class="header_text">
+                                        Freezer - Shelf 2
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:switch="${Main_s_1.getContents().size()==Main_s_1.getMaxVolume()}">
+                                            <div th:case="true">
+                                                <div  style="color: red;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                            <div th:case="false">
+                                                <div  style="color: green;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="collapseTwo-s3" class="collapse" aria-labelledby="headingTwo-s3" data-parent="#accordion-s3">
+                                <div class="section_content">
+                                    Content
+                                </div>
+                            </div>
                         </div>
-                        <div class="container_3__section">
-                            section_3
-
+                        <div class="container_3__section" >
+                            <div id="headingThree-s3" class="heading">
+                                <a class="btn btn-link section_header" data-toggle="collapse" data-target="#collapseThree-s3" aria-expanded="true" aria-controls="collapseThree-s3">
+                                    <div class="header_text">
+                                        Freezer - Shelf 3
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:switch="${Main_s_1.getContents().size()==Main_s_1.getMaxVolume()}">
+                                            <div th:case="true">
+                                                <div  style="color: red;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                            <div th:case="false">
+                                                <div  style="color: green;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="collapseThree-s3" class="collapse" aria-labelledby="headingThree-s3" data-parent="#accordion-s3">
+                                <div class="section_content">
+                                    Content
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </div> 
                     <div class="container_4">
-                        <div class="container_4__section">
-                            section_4
-
+                        <div class="container_4__section" >
+                            <div class="heading">
+                                <a class="btn btn-link section_header section_header-first">
+                                    <div class="header_text">
+                                        Freezer - Door
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:switch="${Main_s_1.getContents().size()==Main_s_1.getMaxVolume()}">
+                                            <div th:case="true">
+                                                <div  style="color: red;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                            <div th:case="false">
+                                                <div  style="color: green;">
+                                                    <td th:inline="text">
+                                                        [[${Main_s_1.getContents().size()}]]
+                                                        / 
+                                                        [[${Main_s_1.getMaxVolume()}]]
+                                                    </td>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div >
+                                <div class="section_content ">
+                                    Content
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>    

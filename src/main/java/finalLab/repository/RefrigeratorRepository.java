@@ -13,6 +13,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface RefrigeratorRepository extends CrudRepository<Refrigerator, Long> {
 
-    
+    Iterable<Refrigerator> findByName(String name);
 
 }

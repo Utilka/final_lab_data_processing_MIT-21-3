@@ -51,18 +51,50 @@
 
     background-color: rgba(255, 192, 203, 0.5);
 }
+/* .default_refregerator_container .heading{
+    height: 28px;
+} */
 .default_refregerator_container .section_header{
     background-color: white;
-    
     border-radius: 0;
     margin: 0;
     width: 100%;
-    height: 27px;
-    max-height: 27px;
+    border-bottom: solid 1px black;
+    border-right: solid 1px black;
+    border-left: solid 1px black;
+    height: 28px;
     padding: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(255, 203, 140);
 }
 .default_refregerator_container .section_content{
+    padding: 10px;
+    box-shadow:inset 0px 0px 3px 1px rgba(0, 0, 0, 0.294);
     background-color: white;
-    
-    height: 302px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 298px;
+    background-color: bisque;
+}
+.section_header-first{
+    border-top: 1px solid black;
+}
+.default_refregerator_container .container_3__section .section_content{
+    height: 285px;
+}
+.default_refregerator_container .container_2__section .section_content{
+    height: 382px;
+}
+.default_refregerator_container .container_4__section .section_content{
+    height: 340px;
+}
+
+.default_refregerator_container .header_text{
+    width: 40%;
+    margin-right: 50%;
+}
+.default_refregerator_container .header_amount{
+    width: 20%;
 }
