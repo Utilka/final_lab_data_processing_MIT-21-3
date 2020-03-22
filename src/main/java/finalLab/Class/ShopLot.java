@@ -63,6 +63,13 @@ public class ShopLot {
         this.price = price;
         this.shop = shop;
     }
+    
+    public Item getCopyOfItem(){
+        Item baseItem = this.getItem();
+        Item copiedItem = new Item(baseItem.getVolume(), baseItem.getType(), baseItem.getName(), baseItem.getShelfLife(), baseItem.getManufactureDate());
+        
+        return copiedItem;
+    }
 
     /**
      * @return the id
