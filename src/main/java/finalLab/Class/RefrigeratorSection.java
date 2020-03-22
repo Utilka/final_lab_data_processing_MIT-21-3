@@ -36,7 +36,7 @@ public class RefrigeratorSection {
     @Column(name = "id")
     private long id;
     @Column(name = "max_volume")
-    private int maxVolume = 100;
+    private int maxVolume = 10;
     @Column(name = "type")
     private String type = "shelf"; // тип секции: дверца, или обычная полка
     @Column(name = "name")

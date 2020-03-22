@@ -30,7 +30,7 @@ public class Item {
     @Column(name = "id")
     private long id;
     @Column(name = "volume")
-    private int volume = 10;
+    private int volume = 1;
     @Column(name = "type")
     private String type = "general";
     @Column(name = "name")
