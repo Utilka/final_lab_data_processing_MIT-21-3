@@ -29,9 +29,8 @@ public class ShopLot {
     private long id;
     @Column(name = "name")
     private String name;
-    @OneToOne(
-//            cascade = CascadeType.ALL
-    )
+    @OneToOne( //            cascade = CascadeType.ALL
+            )
     @JoinColumn(name = "item_id")
     private Item item;// TODO need onedirectional relation
     @Column(name = "price")
@@ -42,6 +41,7 @@ public class ShopLot {
 
     public ShopLot() {
     }
+
     /**
      *
      * @param name
@@ -63,11 +63,11 @@ public class ShopLot {
         this.price = price;
         this.shop = shop;
     }
-    
-    public Item getCopyOfItem(){
+
+    public Item getCopyOfItem() {
         Item baseItem = this.getItem();
         Item copiedItem = new Item(baseItem.getVolume(), baseItem.getType(), baseItem.getName(), baseItem.getShelfLife(), baseItem.getManufactureDate());
-        
+
         return copiedItem;
     }
 
