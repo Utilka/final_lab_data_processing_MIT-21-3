@@ -33,6 +33,10 @@ public class Item {
     @Column(name = "type")
     private String type = "general";
     @Column(name = "name")
+    private String state = "normal";
+    @Column(name = "state")
+    private String picture = "/item_pictures/default.svg";
+    @Column(name = "picture")
     private String name = "sample_item_name";
     @Column(name = "shelf_life")
     private int shelfLife = 10; //in days
@@ -53,8 +57,10 @@ public class Item {
         this.name = name;
     }
 
-    public Item(int volume, String type, String name, int shelfLife, Date manufactureDate) {
+    public Item(int volume, String state,String picture, String type, String name, int shelfLife, Date manufactureDate) {
         this.volume = volume;
+        this.state = state;
+        this.picture = picture;
         this.type = type;
         this.name = name;
         this.shelfLife = shelfLife;
@@ -75,7 +81,46 @@ public class Item {
         }
         return "";
     }
+    
+    public String getPic(){
+        String pic = "/item_pictures/error.svg";
+        
+        if(this.picture.equals("/item_pictures/default.svg")){
+            if(this.state.equals("normal")){
+                if(this.type.equals("general")){
+                    pic = "/item_pictures/default.svg";
+                }
+            }else if(this.state.equals("frozen")){
+                if(this.type.equals("general")){
+                    pic = "/item_pictures/frozen.svg";
+                }
+            }else if(this.state.equals("spoiled")){
+                pic = "/item_pictures/spoiled.png";
+            }
+        }else{
+            pic = this.picture;
+        }
+        
+        return pic;
+    }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+    
+    
     /**
      * @return the volume
      */
@@ -180,5 +225,7 @@ public class Item {
     public void setInStorage(RefrigeratorSection inStorage) {
         this.inStorage = inStorage;
     }
+    
+    
 
 }

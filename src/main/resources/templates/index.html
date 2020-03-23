@@ -104,7 +104,13 @@ and open the template in the editor.
                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                 <div class="section_content">
                                     <div th:each="item: ${Main_s_1.getContents()}" class="item">
-                                        <p th:text="${item.getName()}"></p>
+                                        <div class="item_header">
+                                            <p class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <div class="item_footer">
+                                            <p class="item_state" th:text="${item.getState()}">No Item?</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -218,7 +224,7 @@ and open the template in the editor.
                             <div id="collapseFourth" class="collapse" aria-labelledby="headingFourth" data-parent="#accordion">
                                 <div class="section_content">
                                     <div th:each="item: ${Main_s_4.getContents()}" class="item">
-                                        <p th:text="${item.getName()}"></p>
+                                       
                                     </div>
                                 </div>
                             </div>

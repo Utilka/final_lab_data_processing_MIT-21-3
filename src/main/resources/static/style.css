@@ -71,12 +71,28 @@
 .default_refregerator_container .section_content{
     padding: 10px;
     box-shadow:inset 0px 0px 3px 1px rgba(0, 0, 0, 0.294);
-    background-color: white;
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     height: 298px;
     background-color: bisque;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    overflow: auto;
+    /* direction: rtl; */
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(253, 212, 163, 0); 
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(255, 203, 140); 
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(250, 183, 102); 
 }
 .section_header-first{
     border-top: 1px solid black;
@@ -97,4 +113,31 @@
 }
 .default_refregerator_container .header_amount{
     width: 20%;
+}
+.item{
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.item_picture{
+    width: 80px;
+    height: 80px;
+}
+.item_header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.item_name{
+    margin: 0;
+}
+.item_footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.item_state{
+    margin: 0;
 }

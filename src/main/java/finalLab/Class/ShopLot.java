@@ -66,7 +66,7 @@ public class ShopLot {
 
     public Item getCopyOfItem() {
         Item baseItem = this.getItem();
-        Item copiedItem = new Item(baseItem.getVolume(), baseItem.getType(), baseItem.getName(), baseItem.getShelfLife(), baseItem.getManufactureDate());
+        Item copiedItem = new Item(baseItem.getVolume(),baseItem.getState(),baseItem.getPicture(), baseItem.getType(), baseItem.getName(), baseItem.getShelfLife(), baseItem.getManufactureDate());
 
         return copiedItem;
     }

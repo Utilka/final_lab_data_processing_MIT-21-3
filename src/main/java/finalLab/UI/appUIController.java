@@ -67,6 +67,17 @@ public class appUIController {
         Item item = shopLot.getCopyOfItem();
         item.setInFrigeSection(refrigeratorSection);
         itemRepository.save(item);
+        
+    }
+    
+    public void generateStartItems() {
+        Iterable<ShopLot> shopLots = shopLotRepository.findAll();
+        shopLots.forEach(shopLot -> {
+            Iterable<RefrigeratorSection> refs = refrigeratorSectionRepository.findByName("Main-s-1");
+            RefrigeratorSection ref = refs.iterator().next();
+            buyItem(shopLot, ref);
+        });
+        
     }
     
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -77,12 +88,13 @@ public class appUIController {
         Refrigerator refrigerator = refrigerators.iterator().next();
 
         model.addAttribute("refrigerator", refrigerator);
-
+        
+        generateStartItems();
 //        Iterable<RefrigeratorSection> sections = refrigeratorSectionRepository.findAll();
 //        model.addAttribute("sections", sections);
-        if (refrigerator.getSkin() == "default") {
+        if (refrigerator.getSkin().equals("default")) {
             System.out.println("IF OK");
-            /*Iterable<RefrigeratorSection> Main_s_1_s = refrigeratorSectionRepository.findByName("Main-s-1");
+            Iterable<RefrigeratorSection> Main_s_1_s = refrigeratorSectionRepository.findByName("Main-s-1");
             RefrigeratorSection Main_s_1 = Main_s_1_s.iterator().next();
             Iterable<RefrigeratorSection> Main_s_2_s = refrigeratorSectionRepository.findByName("Main-s-2");
             RefrigeratorSection Main_s_2 = Main_s_2_s.iterator().next();
@@ -108,37 +120,10 @@ public class appUIController {
             model.addAttribute("Freezer_s_1", Freezer_s_1);
             model.addAttribute("Freezer_s_2", Freezer_s_2);
             model.addAttribute("Freezer_s_3", Freezer_s_3);
-            model.addAttribute("Freezer_d", Freezer_d);*/
+            model.addAttribute("Freezer_d", Freezer_d);
         }
-        System.out.println("IF OK");
-        Iterable<RefrigeratorSection> Main_s_1_s = refrigeratorSectionRepository.findByName("Main-s-1");
-        RefrigeratorSection Main_s_1 = Main_s_1_s.iterator().next();
-        Iterable<RefrigeratorSection> Main_s_2_s = refrigeratorSectionRepository.findByName("Main-s-2");
-        RefrigeratorSection Main_s_2 = Main_s_2_s.iterator().next();
-        Iterable<RefrigeratorSection> Main_s_3_s = refrigeratorSectionRepository.findByName("Main-s-3");
-        RefrigeratorSection Main_s_3 = Main_s_3_s.iterator().next();
-        Iterable<RefrigeratorSection> Main_s_4_s = refrigeratorSectionRepository.findByName("Main-s-4");
-        RefrigeratorSection Main_s_4 = Main_s_4_s.iterator().next();
-        Iterable<RefrigeratorSection> Main_d_s = refrigeratorSectionRepository.findByName("Main-d");
-        RefrigeratorSection Main_d = Main_d_s.iterator().next();
-        Iterable<RefrigeratorSection> Freezer_s_1_s = refrigeratorSectionRepository.findByName("Freezer-s-1");
-        RefrigeratorSection Freezer_s_1 = Freezer_s_1_s.iterator().next();
-        Iterable<RefrigeratorSection> Freezer_s_2_s = refrigeratorSectionRepository.findByName("Freezer-s-2");
-        RefrigeratorSection Freezer_s_2 = Freezer_s_2_s.iterator().next();
-        Iterable<RefrigeratorSection> Freezer_s_3_s = refrigeratorSectionRepository.findByName("Freezer-s-3");
-        RefrigeratorSection Freezer_s_3 = Freezer_s_3_s.iterator().next();
-        Iterable<RefrigeratorSection> Freezer_d_s = refrigeratorSectionRepository.findByName("Freezer-d");
-        RefrigeratorSection Freezer_d = Freezer_d_s.iterator().next();
-        model.addAttribute("Main_s_1", Main_s_1);
-        model.addAttribute("Main_s_2", Main_s_2);
-        model.addAttribute("Main_s_3", Main_s_3);
-        model.addAttribute("Main_s_4", Main_s_4);
-        model.addAttribute("Main_d", Main_d);
-        model.addAttribute("Freezer_s_1", Freezer_s_1);
-        model.addAttribute("Freezer_s_2", Freezer_s_2);
-        model.addAttribute("Freezer_s_3", Freezer_s_3);
-        model.addAttribute("Freezer_d", Freezer_d);
-        System.out.println(Main_s_1.getContents().size() == Main_s_1.getMaxVolume());
+        
+        
         return "index";
     }
     /*@RequestMapping(value = "/", method = RequestMethod.POST)
