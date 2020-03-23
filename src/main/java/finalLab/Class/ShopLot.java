@@ -57,8 +57,8 @@ public class ShopLot {
      * @param price
      * @param shop
      */
-    public ShopLot(String name, Item item, int price, Shop shop) {
-        this.name = name;
+    public ShopLot(Item item, int price, Shop shop) {
+        this.name = item.getName();
         this.item = item;
         this.price = price;
         this.shop = shop;

@@ -49,12 +49,6 @@ public class Main implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws Exception {
-        Item item1 = new Item("name 1");
-        Item item2 = new Item("name 2");
-        Item item3 = new Item("name 3");
-
-        RefrigeratorSection refrigeratorSection1 = new RefrigeratorSection("name 11");
-        RefrigeratorSection refrigeratorSection2 = new RefrigeratorSection("name 12");
         
         RefrigeratorSection refrigeratorSection3 = new RefrigeratorSection("Main-s-1");
         RefrigeratorSection refrigeratorSection4 = new RefrigeratorSection("Main-s-2");
@@ -66,16 +60,8 @@ public class Main implements CommandLineRunner {
         RefrigeratorSection refrigeratorSection10 = new RefrigeratorSection("Freezer-s-3");
         RefrigeratorSection refrigeratorSection11 = new RefrigeratorSection("Freezer-d");
 
-        
-        item1.setInFrigeSection(refrigeratorSection3);
-        item2.setInFrigeSection(refrigeratorSection3);
-        item3.setInFrigeSection(refrigeratorSection3);
-
-
         Refrigerator refrigerator = new Refrigerator("name 21");
-
-        refrigeratorSection1.setFrige(refrigerator);
-        refrigeratorSection2.setFrige(refrigerator);
+        
         refrigeratorSection3.setFrige(refrigerator);
         refrigeratorSection4.setFrige(refrigerator);
         refrigeratorSection5.setFrige(refrigerator);
@@ -86,32 +72,12 @@ public class Main implements CommandLineRunner {
         refrigeratorSection10.setFrige(refrigerator);
         refrigeratorSection11.setFrige(refrigerator);
 
-        Item shopItem1 = new Item("shop item name 31");
-        Item shopItem2 = new Item("shop item name 32");
-        Item shopItem3 = new Item("shop item name 33");
-
-        ShopLot shopLot1 = new ShopLot("name 41");
-        ShopLot shopLot2 = new ShopLot("name 42");
-        ShopLot shopLot3 = new ShopLot("name 43");
-
-        shopLot1.setItem(shopItem1);
-        shopLot2.setItem(shopItem2);
-        shopLot3.setItem(shopItem3);
-
         Shop shop = new Shop("name 51");
 
-        shopLot1.setShop(shop);
-        shopLot2.setShop(shop);
-        shopLot3.setShop(shop);
-
         Storage storage = new Storage();
-
-        System.out.println("finished data init");
-
+        
         storageRepository.save(storage);
         refrigeratorRepository.save(refrigerator);
-        refrigeratorSectionRepository.save(refrigeratorSection1);
-        refrigeratorSectionRepository.save(refrigeratorSection2);
         refrigeratorSectionRepository.save(refrigeratorSection3);
         refrigeratorSectionRepository.save(refrigeratorSection4);
         refrigeratorSectionRepository.save(refrigeratorSection5);
@@ -121,22 +87,73 @@ public class Main implements CommandLineRunner {
         refrigeratorSectionRepository.save(refrigeratorSection9);
         refrigeratorSectionRepository.save(refrigeratorSection10);
         refrigeratorSectionRepository.save(refrigeratorSection11);
-        itemRepository.save(item1);
-        itemRepository.save(item2);
-        itemRepository.save(item3);
-        itemRepository.save(shopItem1);
-        itemRepository.save(shopItem2);
-        itemRepository.save(shopItem3);
         shopRepository.save(shop);
-        shopLotRepository.save(shopLot1);
-        shopLotRepository.save(shopLot2);
-        shopLotRepository.save(shopLot3);
-
-        System.out.println("finished db init");
         
-        Iterable<RefrigeratorSection> Main_s_1_s = refrigeratorSectionRepository.findByName("Main-s-1");
-        RefrigeratorSection Main_s_1 = Main_s_1_s.iterator().next();
-        System.out.println(Main_s_1.getMaxVolume());
+        // Creating items
+        // Item item, int price, Shop shop
+        Item item1 = new Item("normal", "/item_pictures/default.svg", "fruits", "apple");
+        ShopLot shoplot1 = new ShopLot(item1, 10, shop);
+        itemRepository.save(item1);
+        shopLotRepository.save(shoplot1);
+        
+        Item item2 = new Item("normal", "/item_pictures/default.svg", "vegetables", "potato");
+        ShopLot shoplot2 = new ShopLot(item2, 20, shop);
+        itemRepository.save(item2);
+        shopLotRepository.save(shoplot2);
+        
+        Item item3 = new Item("normal", "/item_pictures/burger.svg", "coocked", "burger");
+        ShopLot shoplot3 = new ShopLot(item3, 30, shop);
+        itemRepository.save(item3);
+        shopLotRepository.save(shoplot3);
+        
+        Item item4 = new Item("normal", "/item_pictures/default.svg", "coocked", "breakfast");
+        ShopLot shoplot4 = new ShopLot(item4, 40, shop);
+        itemRepository.save(item4);
+        shopLotRepository.save(shoplot4);
+        
+        Item item5 = new Item("frozen", "/item_pictures/default.svg", "semifinished", "dumplings");
+        ShopLot shoplot5 = new ShopLot(item5, 40, shop);
+        itemRepository.save(item5);
+        shopLotRepository.save(shoplot5);
+        
+        Item item6 = new Item("normal", "/item_pictures/ice-cream.svg", "sweet", "ice-cream");
+        ShopLot shoplot6 = new ShopLot(item6, 10, shop);
+        itemRepository.save(item6);
+        shopLotRepository.save(shoplot6);
+        
+        Item item7 = new Item("normal", "/item_pictures/meat.svg", "meet", "meet");
+        ShopLot shoplot7 = new ShopLot(item7, 80, shop);
+        itemRepository.save(item7);
+        shopLotRepository.save(shoplot7);
+        
+        Item item8 = new Item("frozen", "/item_pictures/default.svg", "meet", "fr-meet");
+        ShopLot shoplot8 = new ShopLot(item8, 70, shop);
+        itemRepository.save(item8);
+        shopLotRepository.save(shoplot8);
+        
+        Item item9 = new Item("normal", "/item_pictures/default.svg", "drink", "water");
+        ShopLot shoplot9 = new ShopLot(item9, 10, shop);
+        itemRepository.save(item9);
+        shopLotRepository.save(shoplot9);
+        
+        Item item10 = new Item("normal", "/item_pictures/energy-drink.svg", "drink", "energy-drink");
+        ShopLot shoplot10 = new ShopLot(item10, 20, shop);
+        itemRepository.save(item10);
+        shopLotRepository.save(shoplot10);
+        
+        Item item11 = new Item("normal", "/item_pictures/six-pack.svg", "drink", "beer");
+        ShopLot shoplot11 = new ShopLot(item11, 50, shop);
+        itemRepository.save(item11);
+        shopLotRepository.save(shoplot11);
+        
+        Item item12 = new Item("normal", "/item_pictures/default.svg", "cheese", "cheese");
+        ShopLot shoplot12 = new ShopLot(item12, 60, shop);
+        itemRepository.save(item12);
+        shopLotRepository.save(shoplot12);
+
+        
+        System.out.println("finished data init");
+
 /*
         storage = storageRepository.findById(1L).get();
         refrigerator = refrigeratorRepository.findById(2L).get();

@@ -56,7 +56,17 @@ public class Item {
     public Item(String name) {
         this.name = name;
     }
-
+    
+    public Item(String state,String picture, String type, String name) {
+        this.volume = volume;
+        this.state = state;
+        this.picture = picture;
+        this.type = type;
+        this.name = name;
+        this.shelfLife = shelfLife;
+        this.manufactureDate = manufactureDate;
+    }
+    
     public Item(int volume, String state,String picture, String type, String name, int shelfLife, Date manufactureDate) {
         this.volume = volume;
         this.state = state;
@@ -84,14 +94,49 @@ public class Item {
     
     public String getPic(){
         String pic = "/item_pictures/error.svg";
-        
+        System.out.println(this.name);
+        System.out.println(" "+this.picture);
         if(this.picture.equals("/item_pictures/default.svg")){
             if(this.state.equals("normal")){
-                if(this.type.equals("general")){
+                if(this.type.equals("fruits")){
+                    pic = "/item_pictures/fruit-salad.svg";
+                }else if(this.type.equals("vegetables")){
+                    pic = "/item_pictures/vegetable.svg";
+                }else if(this.type.equals("coocked")){
+                    pic = "/item_pictures/breakfast.svg";
+                }else if(this.type.equals("coocked")){
+                    pic = "/item_pictures/breakfast.svg";
+                }else if(this.type.equals("semifinished")){
+                    pic = "/item_pictures/pizza.svg";
+                }else if(this.type.equals("sweet")){
+                    pic = "/item_pictures/cake.svg";
+                }else if(this.type.equals("meet")){
+                    pic = "/item_pictures/meat.svg";
+                }else if(this.type.equals("drink")){
+                    pic = "/item_pictures/water.svg";
+                }else if(this.type.equals("cheese")){
+                    pic = "/item_pictures/cheese.svg";
+                }else{
                     pic = "/item_pictures/default.svg";
                 }
             }else if(this.state.equals("frozen")){
-                if(this.type.equals("general")){
+                if(this.type.equals("fruits")){
+                    pic = "/item_pictures/fruit-salad.svg";
+                }else if(this.type.equals("vegetables")){
+                    pic = "/item_pictures/fr_vegetable.svg";
+                }else if(this.type.equals("coocked")){
+                    pic = "/item_pictures/breakfast.svg";
+                }else if(this.type.equals("coocked")){
+                    pic = "/item_pictures/breakfast.svg";
+                }else if(this.type.equals("sweet")){
+                    pic = "/item_pictures/cake.svg";
+                }else if(this.type.equals("meet")){
+                    pic = "/item_pictures/fr_steak.svg";
+                }else if(this.type.equals("drink")){
+                    pic = "/item_pictures/water.svg";
+                }else if(this.type.equals("cheese")){
+                    pic = "/item_pictures/cheese.svg";
+                }else{
                     pic = "/item_pictures/frozen.svg";
                 }
             }else if(this.state.equals("spoiled")){
