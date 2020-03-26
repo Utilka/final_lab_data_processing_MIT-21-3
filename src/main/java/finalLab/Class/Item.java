@@ -51,10 +51,14 @@ public class Item {
     private RefrigeratorSection inStorage; // GMT: Saturday, March 14, 2020 6:59:50 AM
 
     public Item() {
+        Date currentDate = new Date();
+        this.manufactureDate = currentDate;
     }
 
     public Item(String name) {
         this.name = name;
+        Date currentDate = new Date();
+        this.manufactureDate = currentDate;
     }
     
     public Item(String state,String picture, String type, String name) {
@@ -64,7 +68,8 @@ public class Item {
         this.type = type;
         this.name = name;
         this.shelfLife = shelfLife;
-        this.manufactureDate = manufactureDate;
+        Date currentDate = new Date();
+        this.manufactureDate = currentDate;
     }
     
     public Item(int volume, String state,String picture, String type, String name, int shelfLife, Date manufactureDate) {
@@ -74,7 +79,8 @@ public class Item {
         this.type = type;
         this.name = name;
         this.shelfLife = shelfLife;
-        this.manufactureDate = manufactureDate;
+        Date currentDate = new Date();
+        this.manufactureDate = currentDate;
     }
 
     public String checkShelfLife() {
@@ -83,7 +89,7 @@ public class Item {
         if (currentDate.getTime() > manufactureDate.getTime() + shelfLifeInMiliseconds) {
             return "Expired";
         }
-        if (currentDate.getTime() > manufactureDate.getTime() + shelfLifeInMiliseconds - 7 * 86400000) { //7 days before expiration date
+        if (currentDate.getTime() > manufactureDate.getTime() + shelfLifeInMiliseconds - 3 * 86400000) { //7 days before expiration date
             return "Close to Expiring";
         }
         if (currentDate.getTime() < manufactureDate.getTime() + shelfLifeInMiliseconds) {
@@ -97,7 +103,7 @@ public class Item {
         System.out.println(this.name);
         System.out.println(" "+this.picture);
         if(this.picture.equals("/item_pictures/default.svg")){
-            if(this.state.equals("normal")){
+            if(this.getState().equals("normal")){
                 if(this.type.equals("fruits")){
                     pic = "/item_pictures/fruit-salad.svg";
                 }else if(this.type.equals("vegetables")){
@@ -119,7 +125,7 @@ public class Item {
                 }else{
                     pic = "/item_pictures/default.svg";
                 }
-            }else if(this.state.equals("frozen")){
+            }else if(this.getState().equals("frozen")){
                 if(this.type.equals("fruits")){
                     pic = "/item_pictures/fruit-salad.svg";
                 }else if(this.type.equals("vegetables")){
@@ -139,17 +145,42 @@ public class Item {
                 }else{
                     pic = "/item_pictures/frozen.svg";
                 }
-            }else if(this.state.equals("spoiled")){
+            }else if(this.getState().equals("spoiled")){
                 pic = "/item_pictures/spoiled.png";
             }
+        }else if(this.getState().equals("spoiled")){
+                pic = "/item_pictures/spoiled.png";
         }else{
             pic = this.picture;
         }
         
         return pic;
     }
-
+    
+    public String getStateColor() {
+        if (this.getState().equals("normal")){
+            return "green";
+        }
+        if (this.getState().equals("frozen")){
+            return "aqua";
+        }
+        if (this.getState().equals("spoiled")){
+            return "brown";
+        }
+        if(this.checkShelfLife().equals("Close to Expiring")){
+            return "orange";
+        }
+        return "violet";
+    }
+    
     public String getState() {
+        if(this.inFrigeSection!=null){
+            if(this.getInFrigeSection().getContentsType().equals("frozen")){
+                this.state = "frozen";
+            } else if(this.checkShelfLife().equals("Expired")){
+                this.state = "spoiled";
+            }
+        }
         return state;
     }
 

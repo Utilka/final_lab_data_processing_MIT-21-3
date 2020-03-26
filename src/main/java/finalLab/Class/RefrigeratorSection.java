@@ -73,7 +73,18 @@ public class RefrigeratorSection {
         this.contentsType = contentsType;
         this.contents = contents;
     }
-
+    
+    public String getColor(){
+        String color = "green";
+        if(this.getMaxVolume() - this.getContents().size()<=3){
+            color =  "orange";
+        }
+        if(this.getMaxVolume() - this.getContents().size()<=0){
+            color =  "red";
+        }
+        return color;
+    }
+    
     /**
      * @param itemToAdd
      * @throws jdk.jshell.spi.ExecutionControl.NotImplementedException

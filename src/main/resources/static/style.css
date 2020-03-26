@@ -1,3 +1,7 @@
+body{
+    /* background-color: gray; */
+}
+
 .header_container{
     height: 10vh; 
 }
@@ -6,9 +10,11 @@
     margin-top: 5vh;
     margin-bottom: 5vh;
     width: 70%;
+    max-width: 1049px;
+    min-width: 1049px;
     margin-left: 15%;
     height: 80vh;
-    background: url('/rf.png');
+    background: url('/ref.png');
     background-size: auto 100%; 
     background-position: center center;
     background-repeat: no-repeat;
@@ -16,46 +22,47 @@
 }
 .default_refregerator_container .container_1{
     position: absolute;
-    top: 5px;
+    top: 60px;
     width: 500px;
-    height: 410px;
+    height: 338px;
 
-    background-color: rgba(255, 192, 203, 0.5);
+    
 
 }
 .default_refregerator_container .container_2{
     position: absolute;
-    top: 5px;
-    right: 0px;
-    width: 475px;
-    height: 410px;
+    top: 42px;
+    right: 250px;
+    width: 265px;
+    height: 350px;
 
-    background-color: rgba(255, 192, 203, 0.5);
+    
 
 }
 .default_refregerator_container .container_3{
     position: absolute;
-    top: 420px;
+    bottom: 37px;
     width: 500px;
-    height: 350px;
+    height: 300px;
 
-    background-color: rgba(255, 192, 203, 0.5);
+    
 
 }
 .default_refregerator_container .container_4{
     position: absolute;
-    top: 420px;
-    right: 0px;
-    width: 475px;
-    height: 350px;
+    bottom: 33px;
+    right: 250px;
+    width: 265px;
+    height: 333px;
 
-    background-color: rgba(255, 192, 203, 0.5);
+    
 }
 /* .default_refregerator_container .heading{
     height: 28px;
 } */
 .default_refregerator_container .section_header{
-    background-color: white;
+    background-color: rgb(145, 159, 228); 
+    /* background-color: rgba(255, 255, 255, 0.911); */
     border-radius: 0;
     margin: 0;
     width: 100%;
@@ -66,7 +73,6 @@
     padding: 0;
     display: flex;
     justify-content: space-between;
-    background-color: rgb(255, 203, 140);
 }
 .default_refregerator_container .section_content{
     padding: 10px;
@@ -74,8 +80,9 @@
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
-    height: 298px;
-    background-color: bisque;
+    height: 226px;
+    background-color: rgb(172, 178, 207); 
+    /* background-color: rgba(255, 255, 255, 0.801); */
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -97,14 +104,14 @@
 .section_header-first{
     border-top: 1px solid black;
 }
-.default_refregerator_container .container_3__section .section_content{
-    height: 285px;
-}
 .default_refregerator_container .container_2__section .section_content{
-    height: 382px;
+    height: 322px;
+}
+.default_refregerator_container .container_3__section .section_content{
+    height: 216px;
 }
 .default_refregerator_container .container_4__section .section_content{
-    height: 340px;
+    height: 305px;
 }
 
 .default_refregerator_container .header_text{
@@ -114,7 +121,12 @@
 .default_refregerator_container .header_amount{
     width: 20%;
 }
+.default_refregerator_container .container_4 .header_text, .default_refregerator_container .container_2 .header_text{
+    width: 70%;
+    margin-right: 10%;
+}
 .item{
+    /* background-color: white; */
     margin: 20px;
     display: flex;
     align-items: center;
