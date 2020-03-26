@@ -8,6 +8,7 @@ package finalLab.UI;
 import finalLab.Class.Item;
 import finalLab.Class.Refrigerator;
 import finalLab.Class.RefrigeratorSection;
+import finalLab.Class.Shop;
 import finalLab.Class.ShopLot;
 import finalLab.repository.ItemRepository;
 import finalLab.repository.RefrigeratorRepository;
@@ -125,6 +126,23 @@ public class appUIController {
         
         
         return "index";
+    }
+    @RequestMapping(value = "/shop/", method = RequestMethod.GET)
+    public String showShopPage(@RequestParam(name = "type", required = false, defaultValue = "default") String type, Model model) {
+        
+        Iterable<Refrigerator> refrigerators = refrigeratorRepository.findAll();
+        Refrigerator refrigerator = refrigerators.iterator().next();
+        
+        model.addAttribute("refrigerator", refrigerator);
+        
+        Iterable<Shop> shops = shopRepository.findAll();
+        Shop shop = shops.iterator().next();
+        
+        model.addAttribute("shop", shop);
+        
+        
+        
+        return "shop";
     }
     /*@RequestMapping(value = "/", method = RequestMethod.POST)
     public String changeRef(@Valid ,

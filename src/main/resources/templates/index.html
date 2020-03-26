@@ -46,16 +46,10 @@ and open the template in the editor.
                     <div class="collapse navbar-collapse navbar-end" id="navbarNav">
                       <ul class="navbar-nav">
                         <li class="nav-item active">
-                          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link disabled" href="#">Disabled</a>
+                          <a class="nav-link" href="/shop/">Shop</a>
                         </li>
                       </ul>
                     </div>
@@ -98,6 +92,19 @@ and open the template in the editor.
                                         <div class="item_footer">
                                             <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
                                         </div>
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                <button class="btn btn-outline-danger active" th:case="spoiled">
+                                                    Dellete
+                                                </button>
+                                                <button class="btn btn-outline-primary active" th:case="*">
+                                                    Eat
+                                                </button>
+                                            </div>
+                                            <button class="btn btn-outline-primary active">
+                                                Move to
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -109,11 +116,11 @@ and open the template in the editor.
                                         Main - Shelf 2
                                     </div>
                                     <div class="header_amount">
-                                        <div th:style="'color:'+@{${Main_s_1.getColor()}}">
+                                        <div th:style="'color:'+@{${Main_s_2.getColor()}}">
                                             <td th:inline="text">
-                                                [[${Main_s_1.getContents().size()}]]
+                                                [[${Main_s_2.getContents().size()}]]
                                                 / 
-                                                [[${Main_s_1.getMaxVolume()}]]
+                                                [[${Main_s_2.getMaxVolume()}]]
                                             </td>
                                         </div>
                                     </div>
@@ -134,11 +141,11 @@ and open the template in the editor.
                                         Main - Shelf 3
                                     </div>
                                     <div class="header_amount">
-                                        <div th:style="'color:'+@{${Main_s_1.getColor()}}">
+                                        <div th:style="'color:'+@{${Main_s_3.getColor()}}">
                                             <td th:inline="text">
-                                                [[${Main_s_1.getContents().size()}]]
+                                                [[${Main_s_3.getContents().size()}]]
                                                 / 
-                                                [[${Main_s_1.getMaxVolume()}]]
+                                                [[${Main_s_3.getMaxVolume()}]]
                                             </td>
                                         </div>
                                     </div>
@@ -159,11 +166,11 @@ and open the template in the editor.
                                         Main - Shelf 4
                                     </div>
                                     <div class="header_amount">
-                                        <div th:style="'color:'+@{${Main_s_1.getColor()}}">
+                                        <div th:style="'color:'+@{${Main_s_4.getColor()}}">
                                             <td th:inline="text">
-                                                [[${Main_s_1.getContents().size()}]]
+                                                [[${Main_s_4.getContents().size()}]]
                                                 / 
-                                                [[${Main_s_1.getMaxVolume()}]]
+                                                [[${Main_s_4.getMaxVolume()}]]
                                             </td>
                                         </div>
                                     </div>
@@ -186,11 +193,11 @@ and open the template in the editor.
                                         Main - Door
                                     </div>
                                     <div class="header_amount">
-                                        <div th:style="'color:'+@{${Main_s_1.getColor()}}">
+                                        <div th:style="'color:'+@{${Main_d.getColor()}}">
                                             <td th:inline="text">
-                                                [[${Main_s_1.getContents().size()}]]
+                                                [[${Main_d.getContents().size()}]]
                                                 / 
-                                                [[${Main_s_1.getMaxVolume()}]]
+                                                [[${Main_d.getMaxVolume()}]]
                                             </td>
                                         </div>
                                     </div>
@@ -213,11 +220,11 @@ and open the template in the editor.
                                         Freezer - Shelf 1
                                     </div>
                                     <div class="header_amount">
-                                        <div th:style="'color:'+@{${Main_s_1.getColor()}}">
+                                        <div th:style="'color:'+@{${Freezer_s_1.getColor()}}">
                                             <td th:inline="text">
-                                                [[${Main_s_1.getContents().size()}]]
+                                                [[${Freezer_s_1.getContents().size()}]]
                                                 / 
-                                                [[${Main_s_1.getMaxVolume()}]]
+                                                [[${Freezer_s_1.getMaxVolume()}]]
                                             </td>
                                         </div>
                                     </div>
@@ -239,11 +246,11 @@ and open the template in the editor.
                                         Freezer - Shelf 2
                                     </div>
                                     <div class="header_amount">
-                                        <div th:style="'color:'+@{${Main_s_1.getColor()}}">
+                                        <div th:style="'color:'+@{${Freezer_s_2.getColor()}}">
                                             <td th:inline="text">
-                                                [[${Main_s_1.getContents().size()}]]
+                                                [[${Freezer_s_2.getContents().size()}]]
                                                 / 
-                                                [[${Main_s_1.getMaxVolume()}]]
+                                                [[${Freezer_s_2.getMaxVolume()}]]
                                             </td>
                                         </div>
                                     </div>
@@ -264,11 +271,11 @@ and open the template in the editor.
                                         Freezer - Shelf 3
                                     </div>
                                     <div class="header_amount">
-                                        <div th:style="'color:'+@{${Main_s_1.getColor()}}">
+                                        <div th:style="'color:'+@{${Freezer_s_3.getColor()}}">
                                             <td th:inline="text">
-                                                [[${Main_s_1.getContents().size()}]]
+                                                [[${Freezer_s_3.getContents().size()}]]
                                                 / 
-                                                [[${Main_s_1.getMaxVolume()}]]
+                                                [[${Freezer_s_3.getMaxVolume()}]]
                                             </td>
                                         </div>
                                     </div>
@@ -291,11 +298,11 @@ and open the template in the editor.
                                         Freezer - Door
                                     </div>
                                     <div class="header_amount">
-                                        <div th:style="'color:'+@{${Main_s_1.getColor()}}">
+                                        <div th:style="'color:'+@{${Freezer_d.getColor()}}">
                                             <td th:inline="text">
-                                                [[${Main_s_1.getContents().size()}]]
+                                                [[${Freezer_d.getContents().size()}]]
                                                 / 
-                                                [[${Main_s_1.getMaxVolume()}]]
+                                                [[${Freezer_d.getMaxVolume()}]]
                                             </td>
                                         </div>
                                     </div>
@@ -318,6 +325,26 @@ and open the template in the editor.
             </h2>
         </div>
 
+        <script>
+            items = document.getElementsByClassName("item_options");
+            if(items){
+            a = 1;
+                for (i=0;i<=items.length-1;i++){
+                    // console.log(items[i]);
+                    // console.log(a);
+                    if(a==3){
+                        items[i].style.left="-105px";
+                        items[i].style.boxShadow="-3px 0px 3px 0px rgba(0, 0, 0, 0.308)";
+                        a=1;
+                    }else if(i==items.length-1){
+                        items[i].style.left="-105px";
+                        items[i].style.boxShadow="-3px 0px 3px 0px rgba(0, 0, 0, 0.308)";
+                    }else{
+                        a++;
+                    }
+                }
+            }
+        </script>
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

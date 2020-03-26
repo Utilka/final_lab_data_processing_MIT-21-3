@@ -25,9 +25,6 @@ body{
     top: 60px;
     width: 500px;
     height: 338px;
-
-    
-
 }
 .default_refregerator_container .container_2{
     position: absolute;
@@ -35,18 +32,12 @@ body{
     right: 250px;
     width: 265px;
     height: 350px;
-
-    
-
 }
 .default_refregerator_container .container_3{
     position: absolute;
     bottom: 37px;
     width: 500px;
     height: 300px;
-
-    
-
 }
 .default_refregerator_container .container_4{
     position: absolute;
@@ -54,8 +45,6 @@ body{
     right: 250px;
     width: 265px;
     height: 333px;
-
-    
 }
 /* .default_refregerator_container .heading{
     height: 28px;
@@ -132,6 +121,8 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    position: relative;
+    padding: 10px;
 }
 .item_picture{
     width: 80px;
@@ -152,4 +143,52 @@ body{
 }
 .item_state{
     margin: 0;
+}
+
+.item_options{
+    position: absolute;
+    right: -105px;
+    background-color: brown;
+    z-index: 100;
+    padding: 10px;
+    width: 105px;
+    height: 100%;
+    /* box-shadow: 3px 0px 0px 0px rgba(0, 0, 0, 0.308), 0px 3px 0px 0px rgba(0, 0, 0, 0.308), 0px -3px 0px 0px rgba(0, 0, 0, 0.308); */
+    box-shadow: 3px 0px 3px 0px rgba(0, 0, 0, 0.308);
+    display: none;
+    justify-content: space-around;
+    align-content: space-around;
+    flex-direction: column;
+}
+.item:hover{
+    cursor: pointer;
+    /* box-shadow: -3px 0px 0px 0px rgba(0, 0, 0, 0.308), 0px 3px 0px 0px rgba(0, 0, 0, 0.308), 0px -3px 0px 0px rgba(0, 0, 0, 0.308); */
+    /* box-shadow: -3px 0px 3px 0px rgba(0, 0, 0, 0.308); */
+    background-color: brown;
+}
+.item:hover .item_options{
+    display: flex;
+}
+.item_options button{
+    width: 85px;
+    
+}
+
+.shop{
+    display: flex;
+    justify-content: center;
+}
+
+.shop .section_content{
+    padding: 10px;
+    box-shadow:inset 0px 0px 3px 1px rgba(0, 0, 0, 0.294);
+    border: 1px solid black;
+    width: 80%;
+    background-color: rgb(172, 178, 207); 
+    /* background-color: rgba(255, 255, 255, 0.801); */
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    overflow: visible;
+    /* direction: rtl; */
 }

@@ -151,10 +151,10 @@ public class Main implements CommandLineRunner {
         itemRepository.save(item11);
         shopLotRepository.save(shoplot11);
         
-        Item item12 = new Item("normal", "/item_pictures/default.svg", "cheese", "cheese");
+        /*Item item12 = new Item("normal", "/item_pictures/default.svg", "cheese", "cheese");
         ShopLot shoplot12 = new ShopLot(item12, 60, shop);
         itemRepository.save(item12);
-        shopLotRepository.save(shoplot12);
+        shopLotRepository.save(shoplot12);*/
 
         
         System.out.println("finished data init");
