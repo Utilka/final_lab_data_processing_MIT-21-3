@@ -16,6 +16,8 @@ import finalLab.repository.RefrigeratorSectionRepository;
 import finalLab.repository.ShopLotRepository;
 import finalLab.repository.ShopRepository;
 import finalLab.repository.StorageRepository;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @SpringBootApplication
 public class Main implements CommandLineRunner {
@@ -138,6 +140,7 @@ public class Main implements CommandLineRunner {
         
         Item item9 = new Item("normal", "/item_pictures/default.svg", "drink", "water");
         ShopLot shoplot9 = new ShopLot(item9, 10, shop);
+        
         itemRepository.save(item9);
         shopLotRepository.save(shoplot9);
         

@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html >
     <head>
-        <title>TODO supply a title</title>
+        <title>Shop</title>
         <meta charset="UTF-8"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -58,50 +58,27 @@ and open the template in the editor.
         </div>
         <div class="shop">
             <div class="section_content">
-                <div th:each="item: ${shop.getContents()}" class="item">
+                <div th:each="item: ${items}" class="item">
                     <div class="item_header" >
                         <p class="item_name" th:text="${item.getItem().getName()}">No Item?</p>
                     </div>
                     <img class="item_picture" th:src="@{${item.getItem().getPic()}}"/>
                     <div class="item_footer">
-                        <p class="item_state" th:style="'color:'+@{${item.getItem().getStateColor()}}" th:text="${item.getItem().getState()}">No Item?</p>
+                        <p class="item_state" th:text="${item.getPrice()}+' $'">No Item?</p>
                     </div>
                     <div class="item_options">
-                        <div th:switch="${item.getItem().getState()}">
-                            <button class="btn btn-outline-danger active" th:case="spoiled">
-                                Dellete
-                            </button>
-                            <button class="btn btn-outline-primary active" th:case="*">
-                                Buy
-                            </button>
-                        </div>
-                        <button class="btn btn-outline-primary active">
-                            Move to
+                        <button class="btn btn-outline-primary active section_button">
+                            Buy
                         </button>
+                        <div class="secton_list">
+                            <div th:each="section: ${sections}">
+                                <a style="color: black;" th:text="${section.getName()}" th:href="'/shop-buy-item?itemId='+@{${item.getId()}}+'&'+'sectionId='+@{${section.getId()}}"></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            items = document.getElementsByClassName("item_options");
-            if(items){
-            a = 1;
-                for (i=0;i<=items.length-1;i++){
-                    // console.log(items[i]);
-                    // console.log(a);
-                    if(a==3){
-                        items[i].style.left="-105px";
-                        items[i].style.boxShadow="-3px 0px 3px 0px rgba(0, 0, 0, 0.308)";
-                        a=1;
-                    }else if(i==items.length-1){
-                        items[i].style.left="-105px";
-                        items[i].style.boxShadow="-3px 0px 3px 0px rgba(0, 0, 0, 0.308)";
-                    }else{
-                        a++;
-                    }
-                }
-            }
-        </script>
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

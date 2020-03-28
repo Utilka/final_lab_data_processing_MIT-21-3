@@ -5,6 +5,8 @@
  */
 package finalLab.Class;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -82,26 +84,9 @@ public class Item {
         Date currentDate = new Date();
         this.manufactureDate = currentDate;
     }
-
-    public String checkShelfLife() {
-        long shelfLifeInMiliseconds = shelfLife * milisecondsInDay;
-        Date currentDate = new Date();
-        if (currentDate.getTime() > manufactureDate.getTime() + shelfLifeInMiliseconds) {
-            return "Expired";
-        }
-        if (currentDate.getTime() > manufactureDate.getTime() + shelfLifeInMiliseconds - 3 * 86400000) { //7 days before expiration date
-            return "Close to Expiring";
-        }
-        if (currentDate.getTime() < manufactureDate.getTime() + shelfLifeInMiliseconds) {
-            return "Fresh";
-        }
-        return "";
-    }
     
     public String getPic(){
         String pic = "/item_pictures/error.svg";
-        System.out.println(this.name);
-        System.out.println(" "+this.picture);
         if(this.picture.equals("/item_pictures/default.svg")){
             if(this.getState().equals("normal")){
                 if(this.type.equals("fruits")){
@@ -158,9 +143,6 @@ public class Item {
     }
     
     public String getStateColor() {
-        if (this.getState().equals("normal")){
-            return "green";
-        }
         if (this.getState().equals("frozen")){
             return "aqua";
         }
@@ -170,7 +152,7 @@ public class Item {
         if(this.checkShelfLife().equals("Close to Expiring")){
             return "orange";
         }
-        return "violet";
+        return "green";
     }
     
     public String getState() {
@@ -179,9 +161,61 @@ public class Item {
                 this.state = "frozen";
             } else if(this.checkShelfLife().equals("Expired")){
                 this.state = "spoiled";
+            }else if(this.checkShelfLife().equals("Close to Expiring")){//if(this.checkShelfLife().equals("Close to Expiring"))
+                return getDateString();
             }
         }
         return state;
+    }
+    
+    public String checkShelfLife() {
+        if(this.inFrigeSection!=null){
+            if(this.inFrigeSection.getContentsType().equals("frozen")){
+                return "Frozen";
+            }else{
+               long shelfLifeInMiliseconds = shelfLife * milisecondsInDay;
+                Date currentDate = new Date();
+                if (currentDate.getTime() > manufactureDate.getTime() + shelfLifeInMiliseconds) {
+                    return "Expired";
+                }
+                if (currentDate.getTime() > manufactureDate.getTime() + shelfLifeInMiliseconds - 3 * 86400000) { //3 days before expiration date
+                    return "Close to Expiring";
+                }
+                if (currentDate.getTime() < manufactureDate.getTime() + shelfLifeInMiliseconds) {
+                    return "Fresh";
+                } 
+            }
+        }
+        return "";
+    }
+    public String getLeftDateString() {
+        return  getDateString();
+    }
+    public String getDateString() {
+        long shelfLifeInMiliseconds = shelfLife * milisecondsInDay;
+        Date currentDate = new Date();
+        long date_left = currentDate.getTime() - manufactureDate.getTime() + shelfLifeInMiliseconds;
+        if(date_left >= 3600000){
+            if(date_left >= 86400000){
+                return date_left/86400000 + "д";
+            }else{
+                return date_left/3600000 + "ч";
+            }
+        }else{
+            return date_left/60000 + "мин";
+        }
+    }
+    
+    public void setInFrigeSection(RefrigeratorSection newFrigeSection) {
+        if(this.inFrigeSection!=null){
+            if(this.inFrigeSection.getContentsType().equals("frozen")){
+                if(newFrigeSection.getContentsType().equals("frozen")){
+                }else{
+                    this.state = "normal";
+                }
+            }
+        }
+        this.inFrigeSection = newFrigeSection;
     }
 
     public void setState(String state) {
@@ -284,9 +318,7 @@ public class Item {
     /**
      * @param inFrigeSection the inFrigeSection to set
      */
-    public void setInFrigeSection(RefrigeratorSection inFrigeSection) {
-        this.inFrigeSection = inFrigeSection;
-    }
+    
 
     /**
      * @return the inStorage

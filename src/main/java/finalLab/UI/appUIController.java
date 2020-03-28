@@ -18,6 +18,7 @@ import finalLab.repository.ShopRepository;
 import finalLab.repository.StorageRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,11 +65,51 @@ public class appUIController {
 
     }
 
-    public void buyItem(ShopLot shopLot, RefrigeratorSection refrigeratorSection) {
-        Item item = shopLot.getCopyOfItem();
-        item.setInFrigeSection(refrigeratorSection);
-        itemRepository.save(item);
-        
+    public String buyItem(ShopLot shopLot, RefrigeratorSection newFrigeSection) {
+        if(newFrigeSection.getMaxVolume()-newFrigeSection.getContents().size()<=0){
+//            return "Полка Заполненна, не удалось переместить продукт!!!";
+              System.out.println(newFrigeSection.getContents().size());
+              return "Error Full";
+        }else if(newFrigeSection.getMaxVolume()-newFrigeSection.getContents().size()==1){
+            
+            Item item = shopLot.getCopyOfItem();
+            item.setInFrigeSection(newFrigeSection);
+            itemRepository.save(item);
+            System.out.println(newFrigeSection.getContents().size());
+            return "Now Full";
+//            return "Теперь полка куда перемещен предмет заполнена!!!";
+        }else if(newFrigeSection.getMaxVolume()-newFrigeSection.getContents().size()>1){
+            
+            Item item = shopLot.getCopyOfItem();
+            item.setInFrigeSection(newFrigeSection);
+            itemRepository.save(item);
+            System.out.println(newFrigeSection.getContents().size());
+            return "OK";
+//            return "Предмет перемещен";
+        }
+        return "Some Error";
+    }
+    
+        public String moveItem(ShopLot shopLot, RefrigeratorSection newFrigeSection) {
+        if(newFrigeSection.getMaxVolume()-newFrigeSection.getContents().size()<=0){
+//            return "Полка Заполненна, не удалось переместить продукт!!!";
+              return "Error Full";
+        }else if(newFrigeSection.getMaxVolume()-newFrigeSection.getContents().size()==1){
+            
+            Item item = shopLot.getCopyOfItem();
+            item.setInFrigeSection(newFrigeSection);
+            itemRepository.save(item);
+            return "Now Full";
+//            return "Теперь полка куда перемещен предмет заполнена!!!";
+        }else if(newFrigeSection.getMaxVolume()-newFrigeSection.getContents().size()>1){
+            
+            Item item = shopLot.getCopyOfItem();
+            item.setInFrigeSection(newFrigeSection);
+            itemRepository.save(item);
+            return "OK";
+//            return "Предмет перемещен";
+        }
+        return "Some Error";
     }
     
     public void generateStartItems() {
@@ -82,15 +123,16 @@ public class appUIController {
     }
     
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String showStartingPage(@RequestParam(name = "type", required = false, defaultValue = "default") String type, Model model) { //@RequestParam(name="type", required=false, defaultValue="default") String name,
+    public String showStartingPage(Model model) { //@RequestParam(name="type", required=false, defaultValue="default") String name,
 //        Iterable<Item> contents = itemRepository.findAll();
 //        model.addAttribute("items", contents);
+        generateStartItems();
         Iterable<Refrigerator> refrigerators = refrigeratorRepository.findAll();
         Refrigerator refrigerator = refrigerators.iterator().next();
 
         model.addAttribute("refrigerator", refrigerator);
         
-        generateStartItems();
+        
 //        Iterable<RefrigeratorSection> sections = refrigeratorSectionRepository.findAll();
 //        model.addAttribute("sections", sections);
         if (refrigerator.getSkin().equals("default")) {
@@ -123,26 +165,41 @@ public class appUIController {
             model.addAttribute("Freezer_s_3", Freezer_s_3);
             model.addAttribute("Freezer_d", Freezer_d);
         }
-        
-        
+
         return "index";
     }
-    @RequestMapping(value = "/shop/", method = RequestMethod.GET)
-    public String showShopPage(@RequestParam(name = "type", required = false, defaultValue = "default") String type, Model model) {
+    @RequestMapping(value = "/shop", method = RequestMethod.GET)
+    public String showShopPage(Model model) {
         
-        Iterable<Refrigerator> refrigerators = refrigeratorRepository.findAll();
-        Refrigerator refrigerator = refrigerators.iterator().next();
+//        Iterable<Refrigerator> refrigerators = refrigeratorRepository.findAll();
+//        Refrigerator refrigerator = refrigerators.iterator().next();
+//        
+//        model.addAttribute("refrigerator", refrigerator);
+//        
+//        Iterable<Shop> shops = shopRepository.findAll();
+//        Shop shop = shops.iterator().next();
+//        
+//        model.addAttribute("shop", shop);
+//        
         
-        model.addAttribute("refrigerator", refrigerator);
-        
-        Iterable<Shop> shops = shopRepository.findAll();
-        Shop shop = shops.iterator().next();
-        
-        model.addAttribute("shop", shop);
-        
-        
+        Iterable<ShopLot> shoplot = shopLotRepository.findAll();
+        model.addAttribute("items", shoplot);
+
+        Iterable<RefrigeratorSection> sections = refrigeratorSectionRepository.findAll();
+        model.addAttribute("sections", sections);
         
         return "shop";
+    }
+    @RequestMapping(value = "/shop-buy-item", method = RequestMethod.GET)
+    public String POSTShopPage(@RequestParam("itemId") String itemId,@RequestParam("sectionId") String sectionId,Model model) {
+        
+        ShopLot shopLot = shopLotRepository.findById(Long.parseLong(itemId)).orElse(null);
+        
+        RefrigeratorSection newFrigeSection = refrigeratorSectionRepository.findById(Long.parseLong(sectionId)).orElse(null);
+        System.out.println("Buy"+shopLot+"in"+newFrigeSection);
+        buyItem(shopLot, newFrigeSection);
+        
+        return "redirect:/shop";
     }
     /*@RequestMapping(value = "/", method = RequestMethod.POST)
     public String changeRef(@Valid ,
@@ -189,7 +246,7 @@ public class appUIController {
 //        }
 //    }
 //
-//    @RequestMapping(value = "/houses", method = RequestMethod.POST)
+//    @RequestMapping(value = "/houses", method = RequestMethod.POST)////////////////////////////////////////////////////////////////////////////
 //    public String addHouse(@RequestParam("ownerId") String ownerId,
 //            @Valid House new_house,
 //            BindingResult result, Model model) {

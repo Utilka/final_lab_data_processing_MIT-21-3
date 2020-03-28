@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html >
     <head>
-        <title>TODO supply a title</title>
+        <title>Refregirator</title>
         <meta charset="UTF-8"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -86,20 +86,26 @@ and open the template in the editor.
                                 <div class="section_content">
                                     <div th:each="item: ${Main_s_1.getContents()}" class="item">
                                         <div class="item_header" >
-                                            <p class="item_name" th:text="${item.getName()}">No Item?</p>
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
                                         </div>
                                         <img class="item_picture" th:src="@{${item.getPic()}}"/>
-                                        <div class="item_footer">
+                                        <!-- <div class="item_footer">
                                             <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
-                                        </div>
+                                        </div> -->
                                         <div class="item_options">
                                             <div th:switch="${item.getState()}">
                                                 <button class="btn btn-outline-danger active" th:case="spoiled">
                                                     Dellete
                                                 </button>
-                                                <button class="btn btn-outline-primary active" th:case="*">
+                                                <button class="btn btn-outline-primary active" th:case="frozen">
                                                     Eat
                                                 </button>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                    <button class="btn btn-outline-primary active">
+                                                        Eat
+                                                    </button>
+                                                </div>
                                             </div>
                                             <button class="btn btn-outline-primary active">
                                                 Move to
@@ -129,7 +135,32 @@ and open the template in the editor.
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                 <div class="section_content">
                                     <div th:each="item: ${Main_s_2.getContents()}" class="item">
-                                        <p th:text="${item.getName()}"></p>
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                <button class="btn btn-outline-danger active" th:case="spoiled">
+                                                    Dellete
+                                                </button>
+                                                <button class="btn btn-outline-primary active" th:case="frozen">
+                                                    Eat
+                                                </button>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                    <button class="btn btn-outline-primary active">
+                                                        Eat
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active">
+                                                Move to
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +185,32 @@ and open the template in the editor.
                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                                 <div class="section_content">
                                     <div th:each="item: ${Main_s_3.getContents()}" class="item">
-                                        <p th:text="${item.getName()}"></p>
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                <button class="btn btn-outline-danger active" th:case="spoiled">
+                                                    Dellete
+                                                </button>
+                                                <button class="btn btn-outline-primary active" th:case="frozen">
+                                                    Eat
+                                                </button>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                    <button class="btn btn-outline-primary active">
+                                                        Eat
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active">
+                                                Move to
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +235,32 @@ and open the template in the editor.
                             <div id="collapseFourth" class="collapse" aria-labelledby="headingFourth" data-parent="#accordion">
                                 <div class="section_content">
                                     <div th:each="item: ${Main_s_4.getContents()}" class="item">
-                                       
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                <button class="btn btn-outline-danger active" th:case="spoiled">
+                                                    Dellete
+                                                </button>
+                                                <button class="btn btn-outline-primary active" th:case="frozen">
+                                                    Eat
+                                                </button>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                    <button class="btn btn-outline-primary active">
+                                                        Eat
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active">
+                                                Move to
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -206,7 +287,32 @@ and open the template in the editor.
                             <div >
                                 <div class="section_content">
                                     <div th:each="item: ${Main_d.getContents()}" class="item">
-                                        <p th:text="${item.getName()}"></p>
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                <button class="btn btn-outline-danger active" th:case="spoiled">
+                                                    Dellete
+                                                </button>
+                                                <button class="btn btn-outline-primary active" th:case="frozen">
+                                                    Eat
+                                                </button>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                    <button class="btn btn-outline-primary active">
+                                                        Eat
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active">
+                                                Move to
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +339,32 @@ and open the template in the editor.
                             <div id="collapseOne-s3" class="collapse show" aria-labelledby="headingOne-s3" data-parent="#accordion-s3">
                                 <div class="section_content">
                                     <div th:each="item: ${Freezer_s_1.getContents()}" class="item">
-                                        <p th:text="${item.getName()}"></p>
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                <button class="btn btn-outline-danger active" th:case="spoiled">
+                                                    Dellete
+                                                </button>
+                                                <button class="btn btn-outline-primary active" th:case="frozen">
+                                                    Eat
+                                                </button>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                    <button class="btn btn-outline-primary active">
+                                                        Eat
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active">
+                                                Move to
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -259,7 +390,32 @@ and open the template in the editor.
                             <div id="collapseTwo-s3" class="collapse" aria-labelledby="headingTwo-s3" data-parent="#accordion-s3">
                                 <div class="section_content">
                                     <div th:each="item: ${Freezer_s_2.getContents()}" class="item">
-                                        <p th:text="${item.getName()}"></p>
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                <button class="btn btn-outline-danger active" th:case="spoiled">
+                                                    Dellete
+                                                </button>
+                                                <button class="btn btn-outline-primary active" th:case="frozen">
+                                                    Eat
+                                                </button>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                    <button class="btn btn-outline-primary active">
+                                                        Eat
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active">
+                                                Move to
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -284,7 +440,32 @@ and open the template in the editor.
                             <div id="collapseThree-s3" class="collapse" aria-labelledby="headingThree-s3" data-parent="#accordion-s3">
                                 <div class="section_content">
                                     <div th:each="item: ${Freezer_s_3.getContents()}" class="item">
-                                        <p th:text="${item.getName()}"></p>
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                <button class="btn btn-outline-danger active" th:case="spoiled">
+                                                    Dellete
+                                                </button>
+                                                <button class="btn btn-outline-primary active" th:case="frozen">
+                                                    Eat
+                                                </button>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                    <button class="btn btn-outline-primary active">
+                                                        Eat
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active">
+                                                Move to
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -311,7 +492,32 @@ and open the template in the editor.
                             <div >
                                 <div class="section_content">
                                     <div th:each="item: ${Freezer_d.getContents()}" class="item">
-                                        <p th:text="${item.getName()}"></p>
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                <button class="btn btn-outline-danger active" th:case="spoiled">
+                                                    Dellete
+                                                </button>
+                                                <button class="btn btn-outline-primary active" th:case="frozen">
+                                                    Eat
+                                                </button>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                    <button class="btn btn-outline-primary active">
+                                                        Eat
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active">
+                                                Move to
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -326,21 +532,24 @@ and open the template in the editor.
         </div>
 
         <script>
-            items = document.getElementsByClassName("item_options");
-            if(items){
-            a = 1;
-                for (i=0;i<=items.length-1;i++){
-                    // console.log(items[i]);
-                    // console.log(a);
-                    if(a==3){
-                        items[i].style.left="-105px";
-                        items[i].style.boxShadow="-3px 0px 3px 0px rgba(0, 0, 0, 0.308)";
-                        a=1;
-                    }else if(i==items.length-1){
-                        items[i].style.left="-105px";
-                        items[i].style.boxShadow="-3px 0px 3px 0px rgba(0, 0, 0, 0.308)";
-                    }else{
-                        a++;
+            sections = document.getElementsByClassName("section_content");
+            for (j=0;j<=sections.length-1;j++){
+                items = sections[j].getElementsByClassName("item_options");
+                if(items){
+                a = 1;
+                    for (i=0;i<=items.length-1;i++){
+                        // console.log(items[i]);
+                        // console.log(a);
+                        if(a==3){
+                            items[i].style.left="-105px";
+                            items[i].style.boxShadow="-3px 0px 3px 0px rgba(0, 0, 0, 0.308)";
+                            a=1;
+                        }else if(i==items.length-1){
+                            items[i].style.left="-105px";
+                            items[i].style.boxShadow="-3px 0px 3px 0px rgba(0, 0, 0, 0.308)";
+                        }else{
+                            a++;
+                        }
                     }
                 }
             }
