@@ -3,7 +3,7 @@ body{
 }
 
 .header_container{
-    height: 10vh; 
+    
 }
 
 .default_refregerator_container{
@@ -160,6 +160,14 @@ body{
     align-content: space-around;
     flex-direction: column;
 }
+.door{
+    right: 0;
+    width: 100px;
+    padding: 10px;
+
+    bottom: -104px;
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.308);
+}
 .item:hover{
     cursor: pointer;
     /* box-shadow: -3px 0px 0px 0px rgba(0, 0, 0, 0.308), 0px 3px 0px 0px rgba(0, 0, 0, 0.308), 0px -3px 0px 0px rgba(0, 0, 0, 0.308); */
@@ -175,6 +183,7 @@ body{
 }
 
 .shop{
+    margin-top: 10vh;
     display: flex;
     justify-content: center;
 }
@@ -184,6 +193,7 @@ body{
     box-shadow:inset 0px 0px 3px 1px rgba(0, 0, 0, 0.294);
     border: 1px solid black;
     width: 80%;
+    max-width: 960px;
     background-color: rgb(172, 178, 207); 
     /* background-color: rgba(255, 255, 255, 0.801); */
     display: flex;
@@ -202,7 +212,7 @@ body{
 }
 
 .secton_list{
-    background-color:rgb(119, 185, 216);
+    background-color:rgb(94, 190, 235);
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.308);
     flex-direction: column;
     align-items: center;
@@ -218,4 +228,27 @@ body{
     font-size: 0.8rem;
     text-decoration: none;
     
+}
+.default_refregerator_content .secton_list{
+    height: 80px;
+    top: 105px;
+}
+.hiden{
+    display: none;
+}
+.submit_button{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+.submit_button:hover{
+    color: white;
+    background-color: rgb(29, 127, 238);
+}
+
+.alert{
+    width: 100vw;
+    position: absolute;
+    z-index: 100;
 }

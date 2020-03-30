@@ -90,20 +90,18 @@ public class appUIController {
         return "Some Error";
     }
     
-        public String moveItem(ShopLot shopLot, RefrigeratorSection newFrigeSection) {
+    public String moveItem(Item item, RefrigeratorSection newFrigeSection) {
         if(newFrigeSection.getMaxVolume()-newFrigeSection.getContents().size()<=0){
 //            return "Полка Заполненна, не удалось переместить продукт!!!";
               return "Error Full";
         }else if(newFrigeSection.getMaxVolume()-newFrigeSection.getContents().size()==1){
             
-            Item item = shopLot.getCopyOfItem();
             item.setInFrigeSection(newFrigeSection);
             itemRepository.save(item);
             return "Now Full";
 //            return "Теперь полка куда перемещен предмет заполнена!!!";
         }else if(newFrigeSection.getMaxVolume()-newFrigeSection.getContents().size()>1){
             
-            Item item = shopLot.getCopyOfItem();
             item.setInFrigeSection(newFrigeSection);
             itemRepository.save(item);
             return "OK";
@@ -123,18 +121,31 @@ public class appUIController {
     }
     
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String showStartingPage(Model model) { //@RequestParam(name="type", required=false, defaultValue="default") String name,
+    public String showStartingPage(@RequestParam(name="message", required=false) String message, Model model) { //@RequestParam(name="type", required=false, defaultValue="default") String name,
 //        Iterable<Item> contents = itemRepository.findAll();
 //        model.addAttribute("items", contents);
         generateStartItems();
+        
+        model.addAttribute("message", message);
+        if(message!=null){
+            System.out.println(message);
+            if(message.equals("'Item Have Been Moved'")){
+                    model.addAttribute("message_type", "success");
+                    System.out.println("success");
+            }else if(message.equals("'Item Moved Section Is Full Now!!!'")){
+                    model.addAttribute("message_type", "warning");
+                    System.out.println("warning");
+            }
+        }
+        
         Iterable<Refrigerator> refrigerators = refrigeratorRepository.findAll();
         Refrigerator refrigerator = refrigerators.iterator().next();
 
         model.addAttribute("refrigerator", refrigerator);
         
+        Iterable<RefrigeratorSection> sections = refrigeratorSectionRepository.findAll();
+        model.addAttribute("sections", sections);
         
-//        Iterable<RefrigeratorSection> sections = refrigeratorSectionRepository.findAll();
-//        model.addAttribute("sections", sections);
         if (refrigerator.getSkin().equals("default")) {
             System.out.println("IF OK");
             Iterable<RefrigeratorSection> Main_s_1_s = refrigeratorSectionRepository.findByName("Main-s-1");
@@ -168,19 +179,42 @@ public class appUIController {
 
         return "index";
     }
-    @RequestMapping(value = "/shop", method = RequestMethod.GET)
-    public String showShopPage(Model model) {
+    
+    @RequestMapping(value = "/ref-move", method = RequestMethod.POST)
+    public String RefregiratorMoveItem(@RequestParam("itemId") String itemId,@RequestParam("sectionId") String sectionId,Model model) {
         
-//        Iterable<Refrigerator> refrigerators = refrigeratorRepository.findAll();
-//        Refrigerator refrigerator = refrigerators.iterator().next();
-//        
-//        model.addAttribute("refrigerator", refrigerator);
-//        
-//        Iterable<Shop> shops = shopRepository.findAll();
-//        Shop shop = shops.iterator().next();
-//        
-//        model.addAttribute("shop", shop);
-//        
+        Item item = itemRepository.findById(Long.parseLong(itemId)).orElse(null);
+        
+        RefrigeratorSection newFrigeSection = refrigeratorSectionRepository.findById(Long.parseLong(sectionId)).orElse(null);
+        
+        String message = moveItem(item, newFrigeSection);
+        
+        switch (message) {
+            case "OK":
+                return "redirect:/?message='Item Have Been Moved'";
+            case "Now Full":
+                return "redirect:/?message='Item Moved Section Is Full Now!!!'";
+            case "Error Full":
+                return "redirect:/?message='Section Is Full Unable To Move Item!!!'";
+            default:
+                return "redirect:/?message='Unknown Error'";
+        }
+    }
+    
+    @RequestMapping(value = "/shop", method = RequestMethod.GET)
+    public String showShopPage(@RequestParam(name="message", required=false) String message, Model model) {
+        
+        model.addAttribute("message", message);
+        if(message!=null){
+            System.out.println(message);
+            if(message.equals("'Item Have Been Moved'")){
+                    model.addAttribute("message_type", "success");
+                    System.out.println("success");
+            }else if(message.equals("'Item Moved Section Is Full Now!!!'")){
+                    model.addAttribute("message_type", "warning");
+                    System.out.println("warning");
+            }
+        }
         
         Iterable<ShopLot> shoplot = shopLotRepository.findAll();
         model.addAttribute("items", shoplot);
@@ -190,16 +224,26 @@ public class appUIController {
         
         return "shop";
     }
-    @RequestMapping(value = "/shop-buy-item", method = RequestMethod.GET)
+    @RequestMapping(value = "/shop-buy", method = RequestMethod.POST)
     public String POSTShopPage(@RequestParam("itemId") String itemId,@RequestParam("sectionId") String sectionId,Model model) {
         
         ShopLot shopLot = shopLotRepository.findById(Long.parseLong(itemId)).orElse(null);
         
         RefrigeratorSection newFrigeSection = refrigeratorSectionRepository.findById(Long.parseLong(sectionId)).orElse(null);
         System.out.println("Buy"+shopLot+"in"+newFrigeSection);
-        buyItem(shopLot, newFrigeSection);
         
-        return "redirect:/shop";
+        String message = buyItem(shopLot, newFrigeSection);
+        
+        switch (message) {
+            case "OK":
+                return "redirect:/shop?message='Item Have Been Moved'";
+            case "Now Full":
+                return "redirect:/shop?message='Item Moved Section Is Full Now!!!'";
+            case "Error Full":
+                return "redirect:/shop?message='Section Is Full Unable To Move Item!!!'";
+            default:
+                return "redirect:/shop?message='Unknown Error'";
+        }
     }
     /*@RequestMapping(value = "/", method = RequestMethod.POST)
     public String changeRef(@Valid ,

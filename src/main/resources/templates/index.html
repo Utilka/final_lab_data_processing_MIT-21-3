@@ -57,6 +57,37 @@ and open the template in the editor.
             </header>
         </div>
 
+        <div class="message">
+            <div th:switch="${message}">
+                <div th:case="null"></div>
+                <div th:case="*">
+                    <div th:switch="${message_type}">
+                        <div th:case="null">
+                            <div class="alert alert-danger alert-dismissible fade show ">
+                                <strong>Error!</strong>
+                                <span th:text="${message}"></span>
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            </div>
+                        </div>
+                        <div th:case="success">
+                            <div class="alert alert-success alert-dismissible fade show">
+                                <strong>Success!</strong>
+                                <span th:text="${message}"></span>
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            </div>
+                        </div>
+                        <div th:case="warning">
+                            <div class="alert alert-warning alert-dismissible fade show ">
+                                <strong>Warning!</strong>
+                                <span th:text="${message}"></span>
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div th:switch="${refrigerator.Skin}">
             <div th:case="'default'" class='default_refregerator_container'>
                 <!-- <div th:each="section: ${sections}" class="section">
@@ -107,9 +138,18 @@ and open the template in the editor.
                                                     </button>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-outline-primary active">
+                                            <button class="btn btn-outline-primary active section_button">
                                                 Move to
                                             </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -157,9 +197,18 @@ and open the template in the editor.
                                                     </button>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-outline-primary active">
+                                            <button class="btn btn-outline-primary active section_button">
                                                 Move to
                                             </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -207,9 +256,18 @@ and open the template in the editor.
                                                     </button>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-outline-primary active">
+                                            <button class="btn btn-outline-primary active section_button">
                                                 Move to
                                             </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -257,9 +315,18 @@ and open the template in the editor.
                                                     </button>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-outline-primary active">
+                                            <button class="btn btn-outline-primary active section_button">
                                                 Move to
                                             </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -286,7 +353,7 @@ and open the template in the editor.
                             </div>
                             <div >
                                 <div class="section_content">
-                                    <div th:each="item: ${Main_d.getContents()}" class="item">
+                                    <div th:each="item: ${Main_d.getContents()}" class="item"  style="max-height: 104px;">
                                         <div class="item_header" >
                                             <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
                                         </div>
@@ -294,7 +361,7 @@ and open the template in the editor.
                                         <!-- <div class="item_footer">
                                             <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
                                         </div> -->
-                                        <div class="item_options">
+                                        <div class="item_options door">
                                             <div th:switch="${item.getState()}">
                                                 <button class="btn btn-outline-danger active" th:case="spoiled">
                                                     Dellete
@@ -309,9 +376,18 @@ and open the template in the editor.
                                                     </button>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-outline-primary active">
+                                            <button class="btn btn-outline-primary active section_button">
                                                 Move to
                                             </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -361,9 +437,18 @@ and open the template in the editor.
                                                     </button>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-outline-primary active">
+                                            <button class="btn btn-outline-primary active section_button">
                                                 Move to
                                             </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -412,9 +497,18 @@ and open the template in the editor.
                                                     </button>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-outline-primary active">
+                                            <button class="btn btn-outline-primary active section_button">
                                                 Move to
                                             </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -462,9 +556,18 @@ and open the template in the editor.
                                                     </button>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-outline-primary active">
+                                            <button class="btn btn-outline-primary active section_button">
                                                 Move to
                                             </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -491,7 +594,7 @@ and open the template in the editor.
                             </div>
                             <div >
                                 <div class="section_content">
-                                    <div th:each="item: ${Freezer_d.getContents()}" class="item">
+                                    <div th:each="item: ${Freezer_d.getContents()}" class="item" style="max-height: 104px;">
                                         <div class="item_header" >
                                             <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
                                         </div>
@@ -499,7 +602,7 @@ and open the template in the editor.
                                         <!-- <div class="item_footer">
                                             <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
                                         </div> -->
-                                        <div class="item_options">
+                                        <div class="item_options door">
                                             <div th:switch="${item.getState()}">
                                                 <button class="btn btn-outline-danger active" th:case="spoiled">
                                                     Dellete
@@ -514,9 +617,18 @@ and open the template in the editor.
                                                     </button>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-outline-primary active">
+                                            <button class="btn btn-outline-primary active section_button">
                                                 Move to
                                             </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -541,12 +653,14 @@ and open the template in the editor.
                         // console.log(items[i]);
                         // console.log(a);
                         if(a==3){
+                            if(!items[i].classList.contains("door")){
                             items[i].style.left="-105px";
                             items[i].style.boxShadow="-3px 0px 3px 0px rgba(0, 0, 0, 0.308)";
-                            a=1;
+                            a=1;}
                         }else if(i==items.length-1){
+                            if(!items[i].classList.contains("door")){
                             items[i].style.left="-105px";
-                            items[i].style.boxShadow="-3px 0px 3px 0px rgba(0, 0, 0, 0.308)";
+                            items[i].style.boxShadow="-3px 0px 3px 0px rgba(0, 0, 0, 0.308)";}
                         }else{
                             a++;
                         }

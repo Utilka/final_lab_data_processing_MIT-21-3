@@ -56,6 +56,38 @@ and open the template in the editor.
                   </nav>
             </header>
         </div>
+        
+        <div class="message">
+            <div th:switch="${message}">
+                <div th:case="null"></div>
+                <div th:case="*">
+                    <div th:switch="${message_type}">
+                        <div th:case="null">
+                            <div class="alert alert-danger alert-dismissible fade show ">
+                                <strong>Error!</strong>
+                                <span th:text="${message}"></span>
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            </div>
+                        </div>
+                        <div th:case="success">
+                            <div class="alert alert-success alert-dismissible fade show">
+                                <strong>Success!</strong>
+                                <span th:text="${message}"></span>
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            </div>
+                        </div>
+                        <div th:case="warning">
+                            <div class="alert alert-warning alert-dismissible fade show ">
+                                <strong>Warning!</strong>
+                                <span th:text="${message}"></span>
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="shop">
             <div class="section_content">
                 <div th:each="item: ${items}" class="item">
@@ -72,7 +104,12 @@ and open the template in the editor.
                         </button>
                         <div class="secton_list">
                             <div th:each="section: ${sections}">
-                                <a style="color: black;" th:text="${section.getName()}" th:href="'/shop-buy-item?itemId='+@{${item.getId()}}+'&'+'sectionId='+@{${section.getId()}}"></a>
+                                <!-- <a style="color: black;" th:text="${section.getName()}" th:href="'/shop-buy-item?itemId='+@{${item.getId()}}+'&'+'sectionId='+@{${section.getId()}}"></a> -->
+                                <form  action="/shop-buy" method="post">
+                                    <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                    <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                    <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                </form>
                             </div>
                         </div>
                     </div>
