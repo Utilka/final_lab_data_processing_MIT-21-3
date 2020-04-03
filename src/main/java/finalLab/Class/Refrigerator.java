@@ -39,6 +39,9 @@ public class Refrigerator {
     private int level = 1;
     @Column(name = "skin")
     private String Skin = "default";
+    @Column(name = "money")
+    private int money = 1000;
+
     @OneToMany(
             mappedBy = "frige",
             cascade = CascadeType.ALL,
@@ -157,5 +160,11 @@ public class Refrigerator {
     public long getId() {
         return id;
     }
+    public int getMoney() {
+        return money;
+    }
 
+    public void setMoney(int money) {
+        this.money = money;
+    }
 }

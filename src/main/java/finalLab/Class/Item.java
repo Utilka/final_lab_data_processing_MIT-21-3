@@ -152,7 +152,7 @@ public class Item {
         if(this.checkShelfLife().equals("Close to Expiring")){
             return "orange";
         }
-        return "green";
+        return "black";
     }
     
     public String getState() {
