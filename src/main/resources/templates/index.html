@@ -187,17 +187,20 @@ and open the template in the editor.
                                         </div> -->
                                         <div class="item_options">
                                             <div th:switch="${item.getState()}">
-                                                <button class="btn btn-outline-danger active" th:case="spoiled">
-                                                    Dellete
-                                                </button>
-                                                <button class="btn btn-outline-primary active" th:case="frozen">
-                                                    Eat
-                                                </button>
+                                                    <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                    </form>
+                                                    <form  action="/ref-dell" method="post" th:case="frozen">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                    </form>
                                                 <div th:case="*">
                                                     <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
-                                                    <button class="btn btn-outline-primary active">
-                                                        Eat
-                                                    </button>
+                                                        <form  action="/ref-dell" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
                                                 </div>
                                             </div>
                                             <button class="btn btn-outline-primary active section_button">
@@ -246,17 +249,20 @@ and open the template in the editor.
                                         </div> -->
                                         <div class="item_options">
                                             <div th:switch="${item.getState()}">
-                                                <button class="btn btn-outline-danger active" th:case="spoiled">
-                                                    Dellete
-                                                </button>
-                                                <button class="btn btn-outline-primary active" th:case="frozen">
-                                                    Eat
-                                                </button>
+                                                    <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                    </form>
+                                                    <form  action="/ref-dell" method="post" th:case="frozen">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                    </form>
                                                 <div th:case="*">
                                                     <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
-                                                    <button class="btn btn-outline-primary active">
-                                                        Eat
-                                                    </button>
+                                                        <form  action="/ref-dell" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
                                                 </div>
                                             </div>
                                             <button class="btn btn-outline-primary active section_button">
@@ -305,17 +311,20 @@ and open the template in the editor.
                                         </div> -->
                                         <div class="item_options">
                                             <div th:switch="${item.getState()}">
-                                                <button class="btn btn-outline-danger active" th:case="spoiled">
-                                                    Dellete
-                                                </button>
-                                                <button class="btn btn-outline-primary active" th:case="frozen">
-                                                    Eat
-                                                </button>
+                                                    <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                    </form>
+                                                    <form  action="/ref-dell" method="post" th:case="frozen">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                    </form>
                                                 <div th:case="*">
                                                     <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
-                                                    <button class="btn btn-outline-primary active">
-                                                        Eat
-                                                    </button>
+                                                        <form  action="/ref-dell" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
                                                 </div>
                                             </div>
                                             <button class="btn btn-outline-primary active section_button">
@@ -365,32 +374,35 @@ and open the template in the editor.
                                             <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
                                         </div> -->
                                         <div class="item_options door">
-                                            <div th:switch="${item.getState()}">
-                                                <button class="btn btn-outline-danger active" th:case="spoiled">
-                                                    Dellete
-                                                </button>
-                                                <button class="btn btn-outline-primary active" th:case="frozen">
-                                                    Eat
-                                                </button>
-                                                <div th:case="*">
-                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
-                                                    <button class="btn btn-outline-primary active">
-                                                        Eat
-                                                    </button>
+                                                <div th:switch="${item.getState()}">
+                                                        <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                        </form>
+                                                        <form  action="/ref-dell" method="post" th:case="frozen">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
+                                                    <div th:case="*">
+                                                        <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                            <form  action="/ref-dell" method="post">
+                                                                <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                                <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                            </form>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <button class="btn btn-outline-primary active section_button">
-                                                Move to
-                                            </button>
-                                            <div class="secton_list">
-                                                <div th:each="section: ${sections}">
-                                                    <form  action="/ref-move" method="post">
-                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
-                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
-                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
-                                                    </form>
+                                                <button class="btn btn-outline-primary active section_button">
+                                                    Move to
+                                                </button>
+                                                <div class="secton_list">
+                                                    <div th:each="section: ${sections}">
+                                                        <form  action="/ref-move" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                            <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -427,17 +439,20 @@ and open the template in the editor.
                                         </div> -->
                                         <div class="item_options">
                                             <div th:switch="${item.getState()}">
-                                                <button class="btn btn-outline-danger active" th:case="spoiled">
-                                                    Dellete
-                                                </button>
-                                                <button class="btn btn-outline-primary active" th:case="frozen">
-                                                    Eat
-                                                </button>
+                                                    <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                    </form>
+                                                    <form  action="/ref-dell" method="post" th:case="frozen">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                    </form>
                                                 <div th:case="*">
                                                     <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
-                                                    <button class="btn btn-outline-primary active">
-                                                        Eat
-                                                    </button>
+                                                        <form  action="/ref-dell" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
                                                 </div>
                                             </div>
                                             <button class="btn btn-outline-primary active section_button">
@@ -487,17 +502,20 @@ and open the template in the editor.
                                         </div> -->
                                         <div class="item_options">
                                             <div th:switch="${item.getState()}">
-                                                <button class="btn btn-outline-danger active" th:case="spoiled">
-                                                    Dellete
-                                                </button>
-                                                <button class="btn btn-outline-primary active" th:case="frozen">
-                                                    Eat
-                                                </button>
+                                                    <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                    </form>
+                                                    <form  action="/ref-dell" method="post" th:case="frozen">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                    </form>
                                                 <div th:case="*">
                                                     <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
-                                                    <button class="btn btn-outline-primary active">
-                                                        Eat
-                                                    </button>
+                                                        <form  action="/ref-dell" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
                                                 </div>
                                             </div>
                                             <button class="btn btn-outline-primary active section_button">
@@ -546,17 +564,20 @@ and open the template in the editor.
                                         </div> -->
                                         <div class="item_options">
                                             <div th:switch="${item.getState()}">
-                                                <button class="btn btn-outline-danger active" th:case="spoiled">
-                                                    Dellete
-                                                </button>
-                                                <button class="btn btn-outline-primary active" th:case="frozen">
-                                                    Eat
-                                                </button>
+                                                    <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                    </form>
+                                                    <form  action="/ref-dell" method="post" th:case="frozen">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                    </form>
                                                 <div th:case="*">
                                                     <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
-                                                    <button class="btn btn-outline-primary active">
-                                                        Eat
-                                                    </button>
+                                                        <form  action="/ref-dell" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
                                                 </div>
                                             </div>
                                             <button class="btn btn-outline-primary active section_button">
@@ -607,31 +628,34 @@ and open the template in the editor.
                                         </div> -->
                                         <div class="item_options door">
                                             <div th:switch="${item.getState()}">
-                                                <button class="btn btn-outline-danger active" th:case="spoiled">
-                                                    Dellete
-                                                </button>
-                                                <button class="btn btn-outline-primary active" th:case="frozen">
-                                                    Eat
-                                                </button>
-                                                <div th:case="*">
-                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
-                                                    <button class="btn btn-outline-primary active">
-                                                        Eat
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-outline-primary active section_button">
-                                                Move to
-                                            </button>
-                                            <div class="secton_list">
-                                                <div th:each="section: ${sections}">
-                                                    <form  action="/ref-move" method="post">
+                                                <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                    <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                    <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                </form>
+                                                <form  action="/ref-dell" method="post" th:case="frozen">
+                                                    <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                    <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                </form>
+                                            <div th:case="*">
+                                                <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                    <form  action="/ref-dell" method="post">
                                                         <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
-                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
-                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
                                                     </form>
-                                                </div>
                                             </div>
+                                        </div>
+                                        <button class="btn btn-outline-primary active section_button">
+                                            Move to
+                                        </button>
+                                        <div class="secton_list">
+                                            <div th:each="section: ${sections}">
+                                                <form  action="/ref-move" method="post">
+                                                    <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                    <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                    <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>

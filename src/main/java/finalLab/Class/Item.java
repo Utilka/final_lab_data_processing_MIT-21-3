@@ -88,9 +88,8 @@ public class Item {
     public String getPic(){
         String pic = "/item_pictures/error.svg";
         if(this.picture.equals("/item_pictures/default.svg")){
-            System.out.println(this.name + " " + this.getState());
+//            System.out.println(this.name + " " + this.getState());
             if(this.getState().equals("normal")){
-                System.out.println(this.name + " nornmal");
                 if(this.type.equals("fruits")){
                     pic = "/item_pictures/fruit-salad.svg";
                 }else if(this.type.equals("vegetables")){
@@ -98,7 +97,6 @@ public class Item {
                 }else if(this.type.equals("coocked")){
                     pic = "/item_pictures/breakfast.svg";
                 }else if(this.type.equals("semifinished")){
-                    System.out.println(this.name + " semifinished");
                     pic = "/item_pictures/pizza.svg";
                 }else if(this.type.equals("sweet")){
                     pic = "/item_pictures/cake.svg";
@@ -222,12 +220,14 @@ public class Item {
     }
     
     public void setInFrigeSection(RefrigeratorSection newFrigeSection) {
+        if (newFrigeSection != null){
             if(this.state.equals("frozen")){
                 if(newFrigeSection.getContentsType().equals("frozen")){
                 }else{
                     this.state = "normal";
                 }
             }
+        }
         this.inFrigeSection = newFrigeSection;
     }
 
