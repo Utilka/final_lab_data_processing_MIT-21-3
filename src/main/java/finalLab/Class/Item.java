@@ -25,7 +25,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 @Entity
 public class Item {
 
-    final long milisecondsInDay = 86400000;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -88,16 +88,17 @@ public class Item {
     public String getPic(){
         String pic = "/item_pictures/error.svg";
         if(this.picture.equals("/item_pictures/default.svg")){
+            System.out.println(this.name + " " + this.getState());
             if(this.getState().equals("normal")){
+                System.out.println(this.name + " nornmal");
                 if(this.type.equals("fruits")){
                     pic = "/item_pictures/fruit-salad.svg";
                 }else if(this.type.equals("vegetables")){
                     pic = "/item_pictures/vegetable.svg";
                 }else if(this.type.equals("coocked")){
                     pic = "/item_pictures/breakfast.svg";
-                }else if(this.type.equals("coocked")){
-                    pic = "/item_pictures/breakfast.svg";
                 }else if(this.type.equals("semifinished")){
+                    System.out.println(this.name + " semifinished");
                     pic = "/item_pictures/pizza.svg";
                 }else if(this.type.equals("sweet")){
                     pic = "/item_pictures/cake.svg";
@@ -115,8 +116,6 @@ public class Item {
                     pic = "/item_pictures/fruit-salad.svg";
                 }else if(this.type.equals("vegetables")){
                     pic = "/item_pictures/fr_vegetable.svg";
-                }else if(this.type.equals("coocked")){
-                    pic = "/item_pictures/breakfast.svg";
                 }else if(this.type.equals("coocked")){
                     pic = "/item_pictures/breakfast.svg";
                 }else if(this.type.equals("sweet")){
@@ -161,8 +160,6 @@ public class Item {
                 this.state = "frozen";
             } else if(this.checkShelfLife().equals("Expired")){
                 this.state = "spoiled";
-            }else if(this.checkShelfLife().equals("Close to Expiring")){//if(this.checkShelfLife().equals("Close to Expiring"))
-                return getDateString();
             }
         }
         return state;
@@ -173,7 +170,7 @@ public class Item {
             if(this.inFrigeSection.getContentsType().equals("frozen")){
                 return "Frozen";
             }else{
-               long shelfLifeInMiliseconds = shelfLife * milisecondsInDay;
+                long shelfLifeInMiliseconds = shelfLife * 86400000;
                 Date currentDate = new Date();
                 if (currentDate.getTime() > manufactureDate.getTime() + shelfLifeInMiliseconds) {
                     return "Expired";
@@ -192,7 +189,7 @@ public class Item {
         return  getDateString();
     }
     public String getDateString() {
-        long shelfLifeInMiliseconds = shelfLife * milisecondsInDay;
+        long shelfLifeInMiliseconds = shelfLife * 86400000;
         Date currentDate = new Date();
         long date_left = currentDate.getTime() - manufactureDate.getTime() + shelfLifeInMiliseconds;
         if(date_left >= 3600000){
@@ -206,15 +203,31 @@ public class Item {
         }
     }
     
+    public int getDateInt() {
+        long shelfLifeInMiliseconds = shelfLife * 86400000;
+        Date currentDate = new Date();
+        long date_left = currentDate.getTime() - manufactureDate.getTime() + shelfLifeInMiliseconds;
+        if(date_left >= 3600000){
+            if(date_left >= 86400000){
+                date_left = date_left/86400000;
+                return (int)date_left;
+            }else{
+                date_left =date_left/3600000;
+                return (int)date_left;
+            }
+        }else{
+            date_left =date_left/60000;
+            return (int)date_left;
+        }
+    }
+    
     public void setInFrigeSection(RefrigeratorSection newFrigeSection) {
-        if(this.inFrigeSection!=null){
-            if(this.inFrigeSection.getContentsType().equals("frozen")){
+            if(this.state.equals("frozen")){
                 if(newFrigeSection.getContentsType().equals("frozen")){
                 }else{
                     this.state = "normal";
                 }
             }
-        }
         this.inFrigeSection = newFrigeSection;
     }
 

@@ -5,7 +5,12 @@
  */
 package finalLab.Class;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -141,6 +146,23 @@ public class RefrigeratorSection {
     /**
      * @param contentsType
      */
+//    class Sortbyroll implements Comparator<Item> 
+//    { 
+//
+//        public int compare(Item a, Item b) 
+//        { 
+//            Date currentDate = new Date();
+//            
+//            long shelfLifeA = a.getShelfLife()* 86400000;
+//            long A = currentDate.getTime() - a.getManufactureDate().getTime() + shelfLifeA;
+//            
+//            long shelfLifeB = b.getShelfLife()* 86400000;
+//            long B = currentDate.getTime() - b.getManufactureDate().getTime() + shelfLifeB;
+//            
+//            return (int)B - (int)A; 
+//        } 
+//    } 
+    
     public void setContentsType(String contentsType) {
         this.contentsType = contentsType;
     }
@@ -148,8 +170,11 @@ public class RefrigeratorSection {
     /**
      * @return the contents
      */
-    public Set<Item> getContents() {
-        return contents;
+    public List<Item> getContents() {
+        List<Item> list = new ArrayList<Item>(this.contents);
+        Comparator<Item> itemLifeComparator = Comparator.comparing(Item::getDateInt);
+        Collections.sort(list, itemLifeComparator);
+        return list;
     }
 
     /**

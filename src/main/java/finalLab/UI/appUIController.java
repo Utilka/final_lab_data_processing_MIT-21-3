@@ -202,7 +202,8 @@ public class appUIController {
     public String RefregiratorDellItem(@RequestParam("itemId") String itemId, Model model) {
         
         Item item = itemRepository.findById(Long.parseLong(itemId)).orElse(null);
-        
+        item.setInFrigeSection(null);
+        itemRepository.save(item);
         itemRepository.delete(item);
         
         

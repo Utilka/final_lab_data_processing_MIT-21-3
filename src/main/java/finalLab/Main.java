@@ -120,11 +120,13 @@ public class Main implements CommandLineRunner {
         
         Item item5 = new Item("frozen", "/item_pictures/default.svg", "semifinished", "dumplings");
         ShopLot shoplot5 = new ShopLot(item5, 40, shop);
+        item5.setShelfLife(1);
         itemRepository.save(item5);
         shopLotRepository.save(shoplot5);
         
-        Item item6 = new Item("normal", "/item_pictures/ice-cream.svg", "sweet", "ice-cream");
+        Item item6 = new Item("frozen", "/item_pictures/ice-cream.svg", "sweet", "ice-cream");
         ShopLot shoplot6 = new ShopLot(item6, 10, shop);
+        item6.setShelfLife(1);
         itemRepository.save(item6);
         shopLotRepository.save(shoplot6);
         

@@ -125,18 +125,14 @@ and open the template in the editor.
                                         </div> -->
                                         <div class="item_options">
                                             <div th:switch="${item.getState()}">
-                                                <button class="btn btn-outline-danger active" th:case="spoiled">
-                                                    <form  action="/ref-dell" method="post">
+                                                    <form  action="/ref-dell" method="post" th:case="spoiled">
                                                         <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
                                                         <button class="btn btn-outline-primary active" type="submit">Dellete</button>
                                                     </form>
-                                                </button>
-                                                <button class="btn btn-outline-primary active" th:case="frozen">
-                                                    <form  action="/ref-dell" method="post">
+                                                    <form  action="/ref-dell" method="post" th:case="frozen">
                                                         <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
                                                         <button class="btn btn-outline-primary active" type="submit">Eat</button>
                                                     </form>
-                                                </button>
                                                 <div th:case="*">
                                                     <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
                                                         <form  action="/ref-dell" method="post">
