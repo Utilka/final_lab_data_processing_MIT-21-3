@@ -365,7 +365,7 @@ and open the template in the editor.
                             </div>
                             <div >
                                 <div class="section_content">
-                                    <div th:each="item: ${Main_d.getContents()}" class="item"  style="max-height: 104px;">
+                                    <div th:each="item: ${Main_d.getContents()}" class="item door_item"  style="max-height: 124px;">
                                         <div class="item_header" >
                                             <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
                                         </div>
@@ -618,7 +618,7 @@ and open the template in the editor.
                             </div>
                             <div >
                                 <div class="section_content">
-                                    <div th:each="item: ${Freezer_d.getContents()}" class="item" style="max-height: 104px;">
+                                    <div th:each="item: ${Freezer_d.getContents()}" class="item door_item" style="max-height: 124px;">
                                         <div class="item_header" >
                                             <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
                                         </div>

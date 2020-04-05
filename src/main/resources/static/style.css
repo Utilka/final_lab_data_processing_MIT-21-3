@@ -8,44 +8,45 @@ body{
 }
 
 .default_refregerator_container{
+    
+    width: 785px;
+    max-width: 1049px;
+    min-width: 785px;
+    margin: 0 auto;
     margin-top: 5vh;
     margin-bottom: 5vh;
-    width: 70%;
-    max-width: 1049px;
-    min-width: 1049px;
-    margin-left: 15%;
     height: 80vh;
-    background: url('/ref.png');
+    background: url('/rf_1.png');
     background-size: auto 100%; 
-    background-position: center center;
+    background-position: right center;
     background-repeat: no-repeat;
     position: relative;
 }
 .default_refregerator_container .container_1{
     position: absolute;
-    top: 60px;
-    width: 500px;
-    height: 338px;
+    top: 58px;
+    width: 460px;
+    height: 323px;
 }
 .default_refregerator_container .container_2{
     position: absolute;
-    top: 42px;
-    right: 250px;
-    width: 265px;
-    height: 350px;
+    top: 45px;
+    right: 58px;
+    width: 225px;
+    height: 336px;
 }
 .default_refregerator_container .container_3{
     position: absolute;
-    bottom: 37px;
-    width: 500px;
-    height: 300px;
+    bottom: 45px;
+    width: 464px;
+    height: 267px;
 }
 .default_refregerator_container .container_4{
     position: absolute;
-    bottom: 33px;
-    right: 250px;
-    width: 265px;
-    height: 333px;
+    bottom: 35px;
+    right: 58px;
+    width: 225px;
+    height: 308px;
 }
 /* .default_refregerator_container .heading{
     height: 28px;
@@ -70,7 +71,7 @@ body{
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
-    height: 226px;
+    height: 211px;
     background-color: rgb(172, 178, 207); 
     /* background-color: rgba(255, 255, 255, 0.801); */
     display: flex;
@@ -95,13 +96,13 @@ body{
     border-top: 1px solid black;
 }
 .default_refregerator_container .container_2__section .section_content{
-    height: 322px;
+    height: 308px;
 }
 .default_refregerator_container .container_3__section .section_content{
-    height: 216px;
+    height: 183px;
 }
 .default_refregerator_container .container_4__section .section_content{
-    height: 305px;
+    height: 280px;
 }
 
 .default_refregerator_container .header_text{
@@ -163,17 +164,22 @@ body{
 }
 .door{
     right: 0;
-    width: 100px;
-    padding: 10px;
+    width: 95px;
+    padding: 5px;
 
-    bottom: -104px;
-    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.308);
+    bottom: 0px;
+    box-shadow: 3px 0px 3px 0px rgba(0, 0, 0, 0.308);
 }
 .item:hover{
     cursor: pointer;
     /* box-shadow: -3px 0px 0px 0px rgba(0, 0, 0, 0.308), 0px 3px 0px 0px rgba(0, 0, 0, 0.308), 0px -3px 0px 0px rgba(0, 0, 0, 0.308); */
     /* box-shadow: -3px 0px 3px 0px rgba(0, 0, 0, 0.308); */
     background-color: rgb(145, 159, 228);
+}
+.door_item:hover{
+    margin: 0px;
+    width: 210px;
+    align-items: flex-start;
 }
 .item:hover .item_options{
     display: flex;
