@@ -12,6 +12,11 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" th:href="@{/style.css}"/>
     </head>
+    <!-- <div th:switch="${refrigerator.Skin}">
+        <style th:case="'gaming'">
+            body{background-color: 	#202020;}
+        </style>
+    </div> -->
     <body xmlns:th="http://www.thymeleaf.org">
 <!--        <a href="/persons">Persons</a>
         <div th:switch="${items}">
@@ -35,47 +40,86 @@ and open the template in the editor.
             </div>      
             <p><a href="/persons">Persons</a></p>
         </div>-->
-        
-        <div class="header_container">
-            <header>
-                <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                    <a class="navbar-brand" href="#">Refregerator</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse navbar-end" id="navbarNav">
-                      <ul class="navbar-nav col-10">
-                        <li class="nav-item active">
-                          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="/shop/">Shop</a>
-                        </li>
-                      </ul>
-                      <ul class="navbar-nav col-2 skin">
-                        <li class="nav-item active skin-li">
-                            <p class="nav-link">Skin: </p>
-                            <div th:switch="${refrigerator.Skin}" class="skin-form">
-                                <form th:case="'default'" action="/ref-skin" method="post">
-                                    <select class="form-control form-control-sm" name="skin" onchange="this.form.submit()">
-                                        <option value="default" selected>Default</option>
-                                        <option value="gaming">GAMING!!!</option>
-                                    </select>
-                                </form>
-                                <form th:case="'gaming'" action="/ref-skin" method="post">
-                                    <select class="form-control form-control-sm" name="skin" onchange="this.form.submit()">
-                                        <option value="default">Default</option>
-                                        <option value="gaming" selected>GAMING!!!</option>
-                                    </select>
-                                </form>
-                            </div>
-                        </li>
-                     </ul>
-                    </div>
-                  </nav>
-            </header>
+        <div th:switch="${refrigerator.Skin}">
+            <div th:case="'gaming'" class="header_container">
+                <header>
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+                        <a class="navbar-brand" href="#">Refregerator</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse navbar-end" id="navbarNav">
+                        <ul class="navbar-nav col-10">
+                            <li class="nav-item active">
+                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="/shop/">Shop</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav col-2 skin">
+                            <li class="nav-item active skin-li">
+                                <p class="nav-link">Skin: </p>
+                                <div th:switch="${refrigerator.Skin}" class="skin-form">
+                                    <form th:case="'default'" action="/ref-skin" method="post">
+                                        <select class="form-control form-control-sm" name="skin" onchange="this.form.submit()">
+                                            <option value="default" selected>Default</option>
+                                            <option value="gaming">GAMING!!!</option>
+                                        </select>
+                                    </form>
+                                    <form th:case="'gaming'" action="/ref-skin" method="post">
+                                        <select class="form-control form-control-sm" name="skin" onchange="this.form.submit()">
+                                            <option value="default">Default</option>
+                                            <option value="gaming" selected>GAMING!!!</option>
+                                        </select>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                        </div>
+                    </nav>
+                </header>
+            </div>
+            <div th:case="*" class="header_container">
+                <header>
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                        <a class="navbar-brand" href="#">Refregerator</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse navbar-end" id="navbarNav">
+                        <ul class="navbar-nav col-10">
+                            <li class="nav-item active">
+                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="/shop/">Shop</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav col-2 skin">
+                            <li class="nav-item active skin-li">
+                                <p class="nav-link">Skin: </p>
+                                <div th:switch="${refrigerator.Skin}" class="skin-form">
+                                    <form th:case="'default'" action="/ref-skin" method="post">
+                                        <select class="form-control form-control-sm" name="skin" onchange="this.form.submit()">
+                                            <option value="default" selected>Default</option>
+                                            <option value="gaming">GAMING!!!</option>
+                                        </select>
+                                    </form>
+                                    <form th:case="'gaming'" action="/ref-skin" method="post">
+                                        <select class="form-control form-control-sm" name="skin" onchange="this.form.submit()">
+                                            <option value="default">Default</option>
+                                            <option value="gaming" selected>GAMING!!!</option>
+                                        </select>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                        </div>
+                    </nav>
+                </header>
+            </div>
         </div>
-
         <div class="message">
             <div th:switch="${message}">
                 <div th:case="null"></div>
