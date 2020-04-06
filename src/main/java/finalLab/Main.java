@@ -62,6 +62,12 @@ public class Main implements CommandLineRunner {
         RefrigeratorSection refrigeratorSection10 = new RefrigeratorSection("Freezer-s-3");
         RefrigeratorSection refrigeratorSection11 = new RefrigeratorSection("Freezer-d");
         
+        refrigeratorSection7.setMaxVolume(4);
+        refrigeratorSection11.setMaxVolume(4);
+        refrigeratorSection8.setMaxVolume(6);
+        refrigeratorSection9.setMaxVolume(6);
+        refrigeratorSection10.setMaxVolume(6);
+        
         refrigeratorSection8.setContentsType("frozen");
         refrigeratorSection9.setContentsType("frozen");
         refrigeratorSection10.setContentsType("frozen");

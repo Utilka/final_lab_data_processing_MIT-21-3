@@ -38,7 +38,7 @@ public class RefrigeratorSection {
     @Column(name = "id")
     private long id;
     @Column(name = "max_volume")
-    private int maxVolume = 10;
+    private int maxVolume = 9;
     @Column(name = "type")
     private String type = "shelf"; // тип секции: дверца, или обычная полка
     @Column(name = "name")
@@ -80,12 +80,12 @@ public class RefrigeratorSection {
     }
     
     public String getColor(){
-        String color = "green";
+        String color = "rgb(1, 82, 1)";
         if(this.getMaxVolume() - this.getContents().size()<=3){
             color =  "orange";
         }
         if(this.getMaxVolume() - this.getContents().size()<=0){
-            color =  "red";
+            color =  "rgb(170, 0, 0)";
         }
         return color;
     }

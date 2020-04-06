@@ -44,7 +44,7 @@ and open the template in the editor.
                       <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse navbar-end" id="navbarNav">
-                      <ul class="navbar-nav">
+                      <ul class="navbar-nav col-10">
                         <li class="nav-item active">
                           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
@@ -52,6 +52,25 @@ and open the template in the editor.
                           <a class="nav-link" href="/shop/">Shop</a>
                         </li>
                       </ul>
+                      <ul class="navbar-nav col-2 skin">
+                        <li class="nav-item active skin-li">
+                            <p class="nav-link">Skin: </p>
+                            <div th:switch="${refrigerator.Skin}" class="skin-form">
+                                <form th:case="'default'" action="/ref-skin" method="post">
+                                    <select class="form-control form-control-sm" name="skin" onchange="this.form.submit()">
+                                        <option value="default" selected>Default</option>
+                                        <option value="gaming">GAMING!!!</option>
+                                    </select>
+                                </form>
+                                <form th:case="'gaming'" action="/ref-skin" method="post">
+                                    <select class="form-control form-control-sm" name="skin" onchange="this.form.submit()">
+                                        <option value="default">Default</option>
+                                        <option value="gaming" selected>GAMING!!!</option>
+                                    </select>
+                                </form>
+                            </div>
+                        </li>
+                     </ul>
                     </div>
                   </nav>
             </header>
@@ -95,6 +114,582 @@ and open the template in the editor.
                 </div> -->
                 
                 <div class="default_refregerator_content">
+                    <div class="container_1" id="accordion">
+                        <div class="container_1__section" >
+                            <div id="headingOne" class="heading">
+                                <a class="btn btn-link section_header section_header-first" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <div class="header_text">
+                                        Main - Shelf 1
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:style="'color:'+@{${Main_s_1.getColor()}}">
+                                            <td th:inline="text">
+                                                [[${Main_s_1.getContents().size()}]]
+                                                / 
+                                                [[${Main_s_1.getMaxVolume()}]]
+                                            </td>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="section_content">
+                                    <div th:each="item: ${Main_s_1.getContents()}" class="item">
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                    <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                    </form>
+                                                    <form  action="/ref-dell" method="post" th:case="frozen">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                    </form>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                        <form  action="/ref-dell" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active section_button">
+                                                Move to
+                                            </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container_1__section" >
+                            <div id="headingTwo" class="heading">
+                                <a class="btn btn-link section_header" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    <div class="header_text">
+                                        Main - Shelf 2
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:style="'color:'+@{${Main_s_2.getColor()}}">
+                                            <td th:inline="text">
+                                                [[${Main_s_2.getContents().size()}]]
+                                                / 
+                                                [[${Main_s_2.getMaxVolume()}]]
+                                            </td>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                <div class="section_content">
+                                    <div th:each="item: ${Main_s_2.getContents()}" class="item">
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                    <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                    </form>
+                                                    <form  action="/ref-dell" method="post" th:case="frozen">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                    </form>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                        <form  action="/ref-dell" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active section_button">
+                                                Move to
+                                            </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container_1__section" >
+                            <div id="headingThree" class="heading">
+                                <a class="btn btn-link section_header" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                    <div class="header_text">
+                                        Main - Shelf 3
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:style="'color:'+@{${Main_s_3.getColor()}}">
+                                            <td th:inline="text">
+                                                [[${Main_s_3.getContents().size()}]]
+                                                / 
+                                                [[${Main_s_3.getMaxVolume()}]]
+                                            </td>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="section_content">
+                                    <div th:each="item: ${Main_s_3.getContents()}" class="item">
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                    <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                    </form>
+                                                    <form  action="/ref-dell" method="post" th:case="frozen">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                    </form>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                        <form  action="/ref-dell" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active section_button">
+                                                Move to
+                                            </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container_1__section" >
+                            <div id="headingFourth" class="heading">
+                                <a class="btn btn-link section_header" data-toggle="collapse" data-target="#collapseFourth" aria-expanded="true" aria-controls="collapseFourth">
+                                    <div class="header_text">
+                                        Main - Shelf 4
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:style="'color:'+@{${Main_s_4.getColor()}}">
+                                            <td th:inline="text">
+                                                [[${Main_s_4.getContents().size()}]]
+                                                / 
+                                                [[${Main_s_4.getMaxVolume()}]]
+                                            </td>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="collapseFourth" class="collapse" aria-labelledby="headingFourth" data-parent="#accordion">
+                                <div class="section_content">
+                                    <div th:each="item: ${Main_s_4.getContents()}" class="item">
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                    <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                    </form>
+                                                    <form  action="/ref-dell" method="post" th:case="frozen">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                    </form>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                        <form  action="/ref-dell" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active section_button">
+                                                Move to
+                                            </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="container_2">
+                        <div class="container_2__section" >
+                            <div class="heading">
+                                <a class="btn btn-link section_header section_header-first">
+                                    <div class="header_text">
+                                        Main - Door
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:style="'color:'+@{${Main_d.getColor()}}">
+                                            <td th:inline="text">
+                                                [[${Main_d.getContents().size()}]]
+                                                / 
+                                                [[${Main_d.getMaxVolume()}]]
+                                            </td>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div >
+                                <div class="section_content">
+                                    <div th:each="item: ${Main_d.getContents()}" class="item door_item"  style="max-height: 124px;">
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options door">
+                                                <div th:switch="${item.getState()}">
+                                                        <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                        </form>
+                                                        <form  action="/ref-dell" method="post" th:case="frozen">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
+                                                    <div th:case="*">
+                                                        <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                            <form  action="/ref-dell" method="post">
+                                                                <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                                <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                            </form>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-outline-primary active section_button">
+                                                    Move to
+                                                </button>
+                                                <div class="secton_list">
+                                                    <div th:each="section: ${sections}">
+                                                        <form  action="/ref-move" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                            <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container_3" id="accordion-s3">
+                        <div class="container_3__section" >
+                            <div id="headingOne-s3" class="heading">
+                                <a class="btn btn-link section_header section_header-first" data-toggle="collapse" data-target="#collapseOne-s3" aria-expanded="true" aria-controls="collapseOne-s3">
+                                    <div class="header_text">
+                                        Freezer - Shelf 1
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:style="'color:'+@{${Freezer_s_1.getColor()}}">
+                                            <td th:inline="text">
+                                                [[${Freezer_s_1.getContents().size()}]]
+                                                / 
+                                                [[${Freezer_s_1.getMaxVolume()}]]
+                                            </td>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="collapseOne-s3" class="collapse show" aria-labelledby="headingOne-s3" data-parent="#accordion-s3">
+                                <div class="section_content">
+                                    <div th:each="item: ${Freezer_s_1.getContents()}" class="item">
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                    <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                    </form>
+                                                    <form  action="/ref-dell" method="post" th:case="frozen">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                    </form>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                        <form  action="/ref-dell" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active section_button">
+                                                Move to
+                                            </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container_3__section" >
+                            <div id="headingTwo-s3" class="heading">
+                                <a class="btn btn-link section_header" data-toggle="collapse" data-target="#collapseTwo-s3" aria-expanded="true" aria-controls="collapseTwo-s3">
+                                    <div class="header_text">
+                                        Freezer - Shelf 2
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:style="'color:'+@{${Freezer_s_2.getColor()}}">
+                                            <td th:inline="text">
+                                                [[${Freezer_s_2.getContents().size()}]]
+                                                / 
+                                                [[${Freezer_s_2.getMaxVolume()}]]
+                                            </td>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="collapseTwo-s3" class="collapse" aria-labelledby="headingTwo-s3" data-parent="#accordion-s3">
+                                <div class="section_content">
+                                    <div th:each="item: ${Freezer_s_2.getContents()}" class="item">
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                    <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                    </form>
+                                                    <form  action="/ref-dell" method="post" th:case="frozen">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                    </form>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                        <form  action="/ref-dell" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active section_button">
+                                                Move to
+                                            </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container_3__section" >
+                            <div id="headingThree-s3" class="heading">
+                                <a class="btn btn-link section_header" data-toggle="collapse" data-target="#collapseThree-s3" aria-expanded="true" aria-controls="collapseThree-s3">
+                                    <div class="header_text">
+                                        Freezer - Shelf 3
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:style="'color:'+@{${Freezer_s_3.getColor()}}">
+                                            <td th:inline="text">
+                                                [[${Freezer_s_3.getContents().size()}]]
+                                                / 
+                                                [[${Freezer_s_3.getMaxVolume()}]]
+                                            </td>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="collapseThree-s3" class="collapse" aria-labelledby="headingThree-s3" data-parent="#accordion-s3">
+                                <div class="section_content">
+                                    <div th:each="item: ${Freezer_s_3.getContents()}" class="item">
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options">
+                                            <div th:switch="${item.getState()}">
+                                                    <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                    </form>
+                                                    <form  action="/ref-dell" method="post" th:case="frozen">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                    </form>
+                                                <div th:case="*">
+                                                    <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                        <form  action="/ref-dell" method="post">
+                                                            <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                            <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                        </form>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-primary active section_button">
+                                                Move to
+                                            </button>
+                                            <div class="secton_list">
+                                                <div th:each="section: ${sections}">
+                                                    <form  action="/ref-move" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                        <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="container_4">
+                        <div class="container_4__section" >
+                            <div class="heading">
+                                <a class="btn btn-link section_header section_header-first">
+                                    <div class="header_text">
+                                        Freezer - Door
+                                    </div>
+                                    <div class="header_amount">
+                                        <div th:style="'color:'+@{${Freezer_d.getColor()}}">
+                                            <td th:inline="text">
+                                                [[${Freezer_d.getContents().size()}]]
+                                                / 
+                                                [[${Freezer_d.getMaxVolume()}]]
+                                            </td>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div >
+                                <div class="section_content">
+                                    <div th:each="item: ${Freezer_d.getContents()}" class="item door_item" style="max-height: 124px;">
+                                        <div class="item_header" >
+                                            <p th:style="'color:'+@{${item.getStateColor()}}" class="item_name" th:text="${item.getName()}">No Item?</p>
+                                        </div>
+                                        <img class="item_picture" th:src="@{${item.getPic()}}"/>
+                                        <!-- <div class="item_footer">
+                                            <p class="item_state" th:style="'color:'+@{${item.getStateColor()}}" th:text="${item.getState()}">No Item?</p>
+                                        </div> -->
+                                        <div class="item_options door">
+                                            <div th:switch="${item.getState()}">
+                                                <form  action="/ref-dell" method="post" th:case="spoiled">
+                                                    <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                    <button class="btn btn-outline-primary active" type="submit">Dellete</button>
+                                                </form>
+                                                <form  action="/ref-dell" method="post" th:case="frozen">
+                                                    <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                    <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                </form>
+                                            <div th:case="*">
+                                                <p th:style="'margin-bottom:0px; text-align: center; color:'+@{${item.getStateColor()}}" th:text="${item.getLeftDateString()}">date</p>
+                                                    <form  action="/ref-dell" method="post">
+                                                        <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                        <button class="btn btn-outline-primary active" type="submit">Eat</button>
+                                                    </form>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-outline-primary active section_button">
+                                            Move to
+                                        </button>
+                                        <div class="secton_list">
+                                            <div th:each="section: ${sections}">
+                                                <form  action="/ref-move" method="post">
+                                                    <input type="text" class="hiden" name="itemId" th:value="${item.getId()}">
+                                                    <input type="text" class="hiden" name="sectionId" th:value="${section.getId()}">
+                                                    <button class="submit_button" type="submit" th:text="${section.getName()}">section</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+
+            <div th:case="'gaming'" class='gaming_refregerator_container'>
+                <!-- <div th:each="section: ${sections}" class="section">
+                    <p th:text="${section.getName()}"></p>
+                </div> -->
+                
+                <div class="gaming_refregerator_content">
                     <div class="container_1" id="accordion">
                         <div class="container_1__section" >
                             <div id="headingOne" class="heading">

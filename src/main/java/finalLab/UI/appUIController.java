@@ -143,7 +143,6 @@ public class appUIController {
         Iterable<RefrigeratorSection> sections = refrigeratorSectionRepository.findAll();
         model.addAttribute("sections", sections);
         
-        if (refrigerator.getSkin().equals("default")) {
             System.out.println("IF OK");
             Iterable<RefrigeratorSection> Main_s_1_s = refrigeratorSectionRepository.findByName("Main-s-1");
             RefrigeratorSection Main_s_1 = Main_s_1_s.iterator().next();
@@ -172,7 +171,6 @@ public class appUIController {
             model.addAttribute("Freezer_s_2", Freezer_s_2);
             model.addAttribute("Freezer_s_3", Freezer_s_3);
             model.addAttribute("Freezer_d", Freezer_d);
-        }
 
         return "index";
     }
@@ -206,6 +204,18 @@ public class appUIController {
         itemRepository.save(item);
         itemRepository.delete(item);
         
+        
+        return "redirect:/?message='OK'";
+    }
+    
+    @RequestMapping(value = "/ref-skin", method = RequestMethod.POST)
+    public String RefregiratorSkin(@RequestParam("skin") String skin, Model model) {
+        
+        Iterable<Refrigerator> refrigerators = refrigeratorRepository.findAll();
+        Refrigerator refrigerator = refrigerators.iterator().next();
+        
+        refrigerator.setSkin(skin);
+        refrigeratorRepository.save(refrigerator);
         
         return "redirect:/?message='OK'";
     }
